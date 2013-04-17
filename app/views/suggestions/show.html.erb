@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Word:</b>
+  <%= @suggestion.word %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @suggestion.status %>
+</p>
+
+<p>
+  <b>Autocorrected word:</b>
+  <%= @suggestion.autocorrected_word_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_suggestion_path(@suggestion) %> |
+<%= link_to 'Back', suggestions_path %>
