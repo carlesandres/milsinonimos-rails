@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416155118) do
+ActiveRecord::Schema.define(:version => 20130418133848) do
 
   create_table "comments", :force => true do |t|
     t.integer  "word_id"
@@ -28,13 +28,6 @@ ActiveRecord::Schema.define(:version => 20130416155118) do
 
   create_table "search_histories", :force => true do |t|
     t.integer  "word_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "significances", :force => true do |t|
-    t.integer  "word_id"
-    t.integer  "meaning_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

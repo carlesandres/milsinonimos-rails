@@ -1,13 +1,8 @@
 Newsino::Application.routes.draw do
   resources :comments
-
-
   resources :suggestions
-
-
   resources :words
 
-  root :to => redirect('/words')
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
