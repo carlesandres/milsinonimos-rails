@@ -86,6 +86,7 @@ GEM
     multi_json (1.7.2)
     nokogiri (1.5.9)
     polyglot (0.3.3)
+    populator (1.0.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -159,6 +160,7 @@ DEPENDENCIES
   factory_girl_rails
   jquery-rails
   launchy
+  populator
   rails (= 3.2.13)
   rspec-expectations
   rspec-mocks
