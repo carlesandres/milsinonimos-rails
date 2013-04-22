@@ -1,16 +1,19 @@
 @import 'sass-bootstrap/lib/bootstrap';
+@import '../styles/custom_variables.scss';
 
-.grey {
-    background: #999;
-    padding: 5px;
+.content_area {
+  background: $gray;
+  padding: 10px;
+  border-radius: 5px;
+
+  .palabra {
+      display: inline-block;
+      background: lightyellow;
+      border-radius: 2px;
+      padding: 2px;
+  }
 }
 
-.palabra {
-    display: inline-block;
-    background: lightyellow;
-    border-radius: 2px;
-    padding: 2px;
-}
 
 .significance {
     padding: 0 0 4px 0;
