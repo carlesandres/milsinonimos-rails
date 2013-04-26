@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 0) do
 
   create_table "meanings", :force => true do |t|
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "rejection_causes", :force => true do |t|
@@ -26,22 +26,25 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "searches", :force => true do |t|
     t.integer  "word_id",    :null => false
     t.datetime "created_at", :null => false
+    t.datetime "updated_at"
   end
 
   add_index "searches", ["word_id"], :name => "word_id"
 
   create_table "significations", :id => false, :force => true do |t|
-    t.integer   "word_id",    :default => 0, :null => false
-    t.integer   "meaning_id", :default => 0, :null => false
-    t.timestamp "when_added",                :null => false
+    t.integer  "word_id",    :default => 0, :null => false
+    t.integer  "meaning_id", :default => 0, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "user-suggestions", :force => true do |t|
     t.string   "word",               :limit => 256, :null => false
     t.integer  "status",             :limit => 2,   :null => false
     t.datetime "created_at",                        :null => false
-    t.integer  "rejection_cause_id"
-    t.integer  "user_meant_word_id"
+    t.integer  "rejection_cause_id",                :null => false
+    t.integer  "user_meant_word_id",                :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "user_comments", :force => true do |t|

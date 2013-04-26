@@ -2,7 +2,7 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    @words = Word.all
+    @words = Word.order("entry").limit( 200 )
 
     respond_to do |format|
       format.html # index.html.erb

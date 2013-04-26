@@ -1,11 +1,9 @@
 Newsino::Application.routes.draw do
   resources :searches
-
-
   resources :comments
   resources :suggestions
   resources :words
-
+  resources :meanings
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

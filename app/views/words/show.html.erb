@@ -3,6 +3,9 @@
 <p>
   <b>Entry:</b>
   <%= @word.entry %>
+  <%= @word.meanings.each do |mean| %>
+    <li><%= mean.description %></li>
+  <% end %>
 </p>
 
 
