@@ -84,6 +84,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.22)
     multi_json (1.7.2)
+    mysql2 (0.3.11)
     nokogiri (1.5.9)
     polyglot (0.3.3)
     populator (1.0.0)
@@ -160,6 +161,7 @@ DEPENDENCIES
   factory_girl_rails
   jquery-rails
   launchy
+  mysql2
   populator
   rails (= 3.2.13)
   rspec-expectations
