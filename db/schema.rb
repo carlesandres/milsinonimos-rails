@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 0) do
 
   create_table "meanings", :force => true do |t|
     t.string   "description"
-    t.datetime "created_at",  :null => false
+    t.datetime "created_at"
     t.datetime "updated_at"
   end
 
@@ -85,9 +85,9 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "uses", ["name"], :name => "name", :unique => true
 
   create_table "words", :force => true do |t|
-    t.string    "entry",     :default => "", :null => false
+    t.string    "entry"
     t.string    "lookup"
-    t.timestamp "was_added",                 :null => false
+    t.timestamp "was_added", :null => false
   end
 
   add_index "words", ["entry"], :name => "word", :unique => true

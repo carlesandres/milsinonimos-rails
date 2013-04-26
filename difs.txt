@@ -1,5 +1,5 @@
 diff --git a/db/schema.rb b/db/schema.rb
-index 55e0392..d517760 100644
+index 55e0392..8a4e1b5 100644
 --- a/db/schema.rb
 +++ b/db/schema.rb
 @@ -11,39 +11,85 @@
@@ -11,6 +11,10 @@ index 55e0392..d517760 100644
  
 -  create_table "comments", :force => true do |t|
 -    t.integer  "word_id"
+-    t.string   "description"
+-    t.integer  "status"
+-    t.datetime "created_at",  :null => false
+-    t.datetime "updated_at",  :null => false
 +  create_table "antonyms", :force => true do |t|
 +    t.integer "word_meaning_id1", :default => 0, :null => false
 +    t.integer "word_meaning_id2", :default => 0, :null => false
@@ -22,29 +26,22 @@ index 55e0392..d517760 100644
 +
 +  create_table "db_sequence", :primary_key => "seq_name", :force => true do |t|
 +    t.integer "nextid", :default => 0, :null => false
-+  end
-+
-+  create_table "meanings", :force => true do |t|
-     t.string   "description"
--    t.integer  "status"
-     t.datetime "created_at",  :null => false
--    t.datetime "updated_at",  :null => false
-+    t.datetime "updated_at"
    end
  
--  create_table "meanings", :force => true do |t|
+   create_table "meanings", :force => true do |t|
 -    t.datetime "created_at", :null => false
 -    t.datetime "updated_at", :null => false
-+  create_table "old_removed_words", :force => true do |t|
-+    t.string "word", :limit => 256, :null => false
++    t.string   "description"
++    t.datetime "created_at"
++    t.datetime "updated_at"
    end
  
 -  create_table "search_histories", :force => true do |t|
 -    t.integer  "word_id"
 -    t.datetime "created_at", :null => false
 -    t.datetime "updated_at", :null => false
-+  create_table "rejection_causes", :force => true do |t|
-+    t.string "cause_short_description", :limit => 40, :null => false
++  create_table "old_removed_words", :force => true do |t|
++    t.string "word", :limit => 256, :null => false
    end
  
 -  create_table "suggestions", :force => true do |t|
@@ -53,11 +50,15 @@ index 55e0392..d517760 100644
 -    t.integer  "autocorrected_word_id"
 -    t.datetime "created_at",            :null => false
 -    t.datetime "updated_at",            :null => false
++  create_table "rejection_causes", :force => true do |t|
++    t.string "cause_short_description", :limit => 40, :null => false
+   end
+ 
 +  create_table "search_history", :force => true do |t|
 +    t.integer   "word_id",      :null => false
 +    t.timestamp "timeofsearch", :null => false
-   end
- 
++  end
++
 +  add_index "search_history", ["word_id"], :name => "word_id"
 +
 +  create_table "significations", :id => false, :force => true do |t|
@@ -101,9 +102,9 @@ index 55e0392..d517760 100644
 -    t.string   "entry"
 -    t.datetime "created_at", :null => false
 -    t.datetime "updated_at", :null => false
-+    t.string    "entry",     :default => "", :null => false
++    t.string    "entry"
 +    t.string    "lookup"
-+    t.timestamp "was_added",                 :null => false
++    t.timestamp "was_added", :null => false
    end
  
 +  add_index "words", ["entry"], :name => "word", :unique => true
