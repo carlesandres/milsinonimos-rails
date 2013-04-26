@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426222318) do
+ActiveRecord::Schema.define(:version => 20130426222636) do
 
   create_table "meanings", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20130426222318) do
   end
 
   create_table "rejection_causes", :force => true do |t|
-    t.string "cause_short_description", :limit => 40, :null => false
+    t.string "description", :limit => 40, :null => false
   end
 
   create_table "search_history", :force => true do |t|
