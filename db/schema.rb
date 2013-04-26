@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426221042) do
+ActiveRecord::Schema.define(:version => 20130426222318) do
 
   create_table "meanings", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(:version => 20130426221042) do
   add_index "word_meanings", ["word_id"], :name => "word_id"
 
   create_table "words", :force => true do |t|
-    t.string    "entry",      :default => "", :null => false
-    t.timestamp "changed_at",                 :null => false
-    t.datetime  "updated_at"
+    t.string   "entry",      :default => "", :null => false
+    t.datetime "changed_at",                 :null => false
+    t.datetime "updated_at"
   end
 
   add_index "words", ["entry"], :name => "word", :unique => true
