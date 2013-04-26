@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426223450) do
+ActiveRecord::Schema.define(:version => 20130426224218) do
 
   create_table "meanings", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -30,12 +30,13 @@ ActiveRecord::Schema.define(:version => 20130426223450) do
 
   add_index "searches", ["word_id"], :name => "word_id"
 
-  create_table "suggested", :force => true do |t|
-    t.string    "word",               :limit => 256, :null => false
-    t.integer   "status",             :limit => 2,   :null => false
-    t.timestamp "when_suggested",                    :null => false
-    t.integer   "rejection_cause_id"
-    t.integer   "user_meant_word_id"
+  create_table "suggestions", :force => true do |t|
+    t.string   "word",               :limit => 256, :null => false
+    t.integer  "status",             :limit => 2,   :null => false
+    t.datetime "created_at",                        :null => false
+    t.integer  "rejection_cause_id"
+    t.integer  "user_meant_word_id"
+    t.datetime "updated_at"
   end
 
   create_table "user_comments", :force => true do |t|
