@@ -1,8 +1,8 @@
 diff --git a/db/schema.rb b/db/schema.rb
-index 55e0392..8a4e1b5 100644
+index 55e0392..d71e2fa 100644
 --- a/db/schema.rb
 +++ b/db/schema.rb
-@@ -11,39 +11,85 @@
+@@ -11,39 +11,68 @@
  #
  # It's strongly recommended to check this file into your version control system.
  
@@ -40,8 +40,8 @@ index 55e0392..8a4e1b5 100644
 -    t.integer  "word_id"
 -    t.datetime "created_at", :null => false
 -    t.datetime "updated_at", :null => false
-+  create_table "old_removed_words", :force => true do |t|
-+    t.string "word", :limit => 256, :null => false
++  create_table "rejection_causes", :force => true do |t|
++    t.string "cause_short_description", :limit => 40, :null => false
    end
  
 -  create_table "suggestions", :force => true do |t|
@@ -50,10 +50,6 @@ index 55e0392..8a4e1b5 100644
 -    t.integer  "autocorrected_word_id"
 -    t.datetime "created_at",            :null => false
 -    t.datetime "updated_at",            :null => false
-+  create_table "rejection_causes", :force => true do |t|
-+    t.string "cause_short_description", :limit => 40, :null => false
-   end
- 
 +  create_table "search_history", :force => true do |t|
 +    t.integer   "word_id",      :null => false
 +    t.timestamp "timeofsearch", :null => false
@@ -68,19 +64,12 @@ index 55e0392..8a4e1b5 100644
 +    t.timestamp "when_added",                :null => false
 +  end
 +
-+  create_table "subjects", :force => true do |t|
-+    t.string "subject",     :limit => 50, :default => "", :null => false
-+    t.string "explanation"
-+  end
-+
-+  add_index "subjects", ["subject"], :name => "subject"
-+
 +  create_table "suggested", :force => true do |t|
-+    t.string    "word",               :limit => 256, :null => false
-+    t.integer   "status",             :limit => 2,   :null => false
-+    t.timestamp "when_suggested",                    :null => false
-+    t.integer   "rejection_cause_id"
-+    t.integer   "user_meant_word_id"
++    t.string   "word",               :limit => 256, :null => false
++    t.integer  "status",             :limit => 2,   :null => false
++    t.datetime "created_at",                        :null => false
++    t.integer  "rejection_cause_id"
++    t.integer  "user_meant_word_id"
 +  end
 +
 +  create_table "user_comments", :force => true do |t|
@@ -89,22 +78,13 @@ index 55e0392..8a4e1b5 100644
 +    t.integer   "word_id",                        :null => false
 +    t.text      "comments",        :limit => 255, :null => false
 +    t.integer   "revision_status"
-+  end
-+
-+  create_table "uses", :force => true do |t|
-+    t.string "name",      :default => "", :null => false
-+    t.string "shortname", :default => "", :null => false
-+  end
-+
-+  add_index "uses", ["name"], :name => "name", :unique => true
-+
+   end
+ 
    create_table "words", :force => true do |t|
--    t.string   "entry"
--    t.datetime "created_at", :null => false
--    t.datetime "updated_at", :null => false
-+    t.string    "entry"
-+    t.string    "lookup"
-+    t.timestamp "was_added", :null => false
+     t.string   "entry"
++    t.string   "lookup"
+     t.datetime "created_at", :null => false
+     t.datetime "updated_at", :null => false
    end
  
 +  add_index "words", ["entry"], :name => "word", :unique => true

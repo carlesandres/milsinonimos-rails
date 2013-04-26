@@ -32,10 +32,6 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "updated_at"
   end
 
-  create_table "old_removed_words", :force => true do |t|
-    t.string "word", :limit => 256, :null => false
-  end
-
   create_table "rejection_causes", :force => true do |t|
     t.string "cause_short_description", :limit => 40, :null => false
   end
@@ -54,19 +50,12 @@ ActiveRecord::Schema.define(:version => 0) do
     t.timestamp "when_added",                :null => false
   end
 
-  create_table "subjects", :force => true do |t|
-    t.string "subject",     :limit => 50, :default => "", :null => false
-    t.string "explanation"
-  end
-
-  add_index "subjects", ["subject"], :name => "subject"
-
   create_table "suggested", :force => true do |t|
-    t.string    "word",               :limit => 256, :null => false
-    t.integer   "status",             :limit => 2,   :null => false
-    t.timestamp "when_suggested",                    :null => false
-    t.integer   "rejection_cause_id"
-    t.integer   "user_meant_word_id"
+    t.string   "word",               :limit => 256, :null => false
+    t.integer  "status",             :limit => 2,   :null => false
+    t.datetime "created_at",                        :null => false
+    t.integer  "rejection_cause_id"
+    t.integer  "user_meant_word_id"
   end
 
   create_table "user_comments", :force => true do |t|
@@ -77,17 +66,11 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer   "revision_status"
   end
 
-  create_table "uses", :force => true do |t|
-    t.string "name",      :default => "", :null => false
-    t.string "shortname", :default => "", :null => false
-  end
-
-  add_index "uses", ["name"], :name => "name", :unique => true
-
   create_table "words", :force => true do |t|
-    t.string    "entry"
-    t.string    "lookup"
-    t.timestamp "was_added", :null => false
+    t.string   "entry"
+    t.string   "lookup"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "words", ["entry"], :name => "word", :unique => true
