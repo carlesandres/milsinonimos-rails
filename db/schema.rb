@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426222636) do
+ActiveRecord::Schema.define(:version => 20130426223450) do
 
   create_table "meanings", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -22,12 +22,13 @@ ActiveRecord::Schema.define(:version => 20130426222636) do
     t.string "description", :limit => 40, :null => false
   end
 
-  create_table "search_history", :force => true do |t|
-    t.integer   "word_id",      :null => false
-    t.timestamp "timeofsearch", :null => false
+  create_table "searches", :force => true do |t|
+    t.integer  "word_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at"
   end
 
-  add_index "search_history", ["word_id"], :name => "word_id"
+  add_index "searches", ["word_id"], :name => "word_id"
 
   create_table "suggested", :force => true do |t|
     t.string    "word",               :limit => 256, :null => false
