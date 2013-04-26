@@ -1,5 +1,5 @@
 diff --git a/db/schema.rb b/db/schema.rb
-index 55e0392..d71e2fa 100644
+index 55e0392..f78a608 100644
 --- a/db/schema.rb
 +++ b/db/schema.rb
 @@ -11,39 +11,68 @@
@@ -34,14 +34,18 @@ index 55e0392..d71e2fa 100644
 +    t.string   "description"
 +    t.datetime "created_at"
 +    t.datetime "updated_at"
++  end
++
++  create_table "rejection_causes", :force => true do |t|
++    t.string "cause_short_description", :limit => 40, :null => false
    end
  
 -  create_table "search_histories", :force => true do |t|
 -    t.integer  "word_id"
--    t.datetime "created_at", :null => false
++  create_table "searches", :force => true do |t|
++    t.integer  "word_id",    :null => false
+     t.datetime "created_at", :null => false
 -    t.datetime "updated_at", :null => false
-+  create_table "rejection_causes", :force => true do |t|
-+    t.string "cause_short_description", :limit => 40, :null => false
    end
  
 -  create_table "suggestions", :force => true do |t|
@@ -50,12 +54,7 @@ index 55e0392..d71e2fa 100644
 -    t.integer  "autocorrected_word_id"
 -    t.datetime "created_at",            :null => false
 -    t.datetime "updated_at",            :null => false
-+  create_table "search_history", :force => true do |t|
-+    t.integer   "word_id",      :null => false
-+    t.timestamp "timeofsearch", :null => false
-+  end
-+
-+  add_index "search_history", ["word_id"], :name => "word_id"
++  add_index "searches", ["word_id"], :name => "word_id"
 +
 +  create_table "significations", :id => false, :force => true do |t|
 +    t.integer   "word_id",    :default => 0, :null => false

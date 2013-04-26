@@ -36,12 +36,12 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string "cause_short_description", :limit => 40, :null => false
   end
 
-  create_table "search_history", :force => true do |t|
-    t.integer   "word_id",      :null => false
-    t.timestamp "timeofsearch", :null => false
+  create_table "searches", :force => true do |t|
+    t.integer  "word_id",    :null => false
+    t.datetime "created_at", :null => false
   end
 
-  add_index "search_history", ["word_id"], :name => "word_id"
+  add_index "searches", ["word_id"], :name => "word_id"
 
   create_table "significations", :id => false, :force => true do |t|
     t.integer   "word_id",    :default => 0, :null => false
