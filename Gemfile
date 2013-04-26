@@ -36,10 +36,13 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-
-group :development, :test do
+group :test do
 	gem 'cucumber-rails'
 	gem 'cucumber-rails-training-wheels'
+end
+
+
+group :development, :test do
 	gem 'database_cleaner'
 	gem 'capybara'
 	gem 'launchy'

@@ -11,20 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
-
-  create_table "antonyms", :force => true do |t|
-    t.integer "word_meaning_id1", :default => 0, :null => false
-    t.integer "word_meaning_id2", :default => 0, :null => false
-  end
-
-  add_index "antonyms", ["word_meaning_id1", "word_meaning_id2"], :name => "word_meaning_id1"
-  add_index "antonyms", ["word_meaning_id1"], :name => "word_meaning_id1_2", :unique => true
-  add_index "antonyms", ["word_meaning_id2"], :name => "word_meaning_id2", :unique => true
-
-  create_table "db_sequence", :primary_key => "seq_name", :force => true do |t|
-    t.integer "nextid", :default => 0, :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130426213430) do
 
   create_table "meanings", :force => true do |t|
     t.string    "distinction"
@@ -42,23 +29,12 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string "cause_short_description", :limit => 40, :null => false
   end
 
-  create_table "removed_words", :force => true do |t|
-    t.string "word", :limit => 256, :null => false
-  end
-
   create_table "search_history", :force => true do |t|
     t.integer   "word_id",      :null => false
     t.timestamp "timeofsearch", :null => false
   end
 
   add_index "search_history", ["word_id"], :name => "word_id"
-
-  create_table "subjects", :force => true do |t|
-    t.string "subject",     :limit => 50, :default => "", :null => false
-    t.string "explanation"
-  end
-
-  add_index "subjects", ["subject"], :name => "subject"
 
   create_table "suggested", :force => true do |t|
     t.string    "word",               :limit => 256, :null => false
@@ -76,31 +52,10 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer   "revision_status"
   end
 
-  create_table "uses", :force => true do |t|
-    t.string "name",      :default => "", :null => false
-    t.string "shortname", :default => "", :null => false
-  end
-
-  add_index "uses", ["name"], :name => "name", :unique => true
-
   create_table "usuarios", :force => true do |t|
     t.string "username", :limit => 256, :null => false
     t.string "password", :limit => 40,  :null => false
   end
-
-  create_table "wiktionary", :id => false, :force => true do |t|
-    t.string "headword", :default => "", :null => false
-    t.text   "meanings"
-    t.text   "synonyms"
-  end
-
-  add_index "wiktionary", ["headword"], :name => "headword"
-
-  create_table "word_forms", :force => true do |t|
-    t.string "word", :limit => 100, :default => "", :null => false
-  end
-
-  add_index "word_forms", ["word"], :name => "word"
 
   create_table "word_mapping", :id => false, :force => true do |t|
     t.integer "derived_id", :default => 0, :null => false
