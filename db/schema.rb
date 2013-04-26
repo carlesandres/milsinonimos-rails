@@ -11,18 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426213430) do
+ActiveRecord::Schema.define(:version => 20130426221042) do
 
   create_table "meanings", :force => true do |t|
-    t.string    "distinction"
-    t.integer   "subject_id"
-    t.integer   "hidden",           :limit => 1, :default => 0
-    t.integer   "check_count",                   :default => 0, :null => false
-    t.integer   "super_id"
-    t.integer   "morphologic_id"
-    t.integer   "morphologic_1_id"
-    t.integer   "morphologic_2_id"
-    t.timestamp "when_added",                                   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at"
   end
 
   create_table "rejection_causes", :force => true do |t|
@@ -57,13 +50,6 @@ ActiveRecord::Schema.define(:version => 20130426213430) do
     t.string "password", :limit => 40,  :null => false
   end
 
-  create_table "word_mapping", :id => false, :force => true do |t|
-    t.integer "derived_id", :default => 0, :null => false
-    t.integer "base_id",    :default => 0, :null => false
-  end
-
-  add_index "word_mapping", ["derived_id"], :name => "derived_id"
-
   create_table "word_meanings", :force => true do |t|
     t.integer   "word_id",    :default => 0, :null => false
     t.integer   "meaning_id", :default => 0, :null => false
@@ -75,11 +61,11 @@ ActiveRecord::Schema.define(:version => 20130426213430) do
   add_index "word_meanings", ["word_id"], :name => "word_id"
 
   create_table "words", :force => true do |t|
-    t.string    "word",      :default => "", :null => false
-    t.string    "lookup"
-    t.timestamp "was_added",                 :null => false
+    t.string    "entry",      :default => "", :null => false
+    t.timestamp "changed_at",                 :null => false
+    t.datetime  "updated_at"
   end
 
-  add_index "words", ["word"], :name => "word", :unique => true
+  add_index "words", ["entry"], :name => "word", :unique => true
 
 end
