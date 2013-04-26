@@ -13,19 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 0) do
 
-  create_table "antonyms", :force => true do |t|
-    t.integer "word_meaning_id1", :default => 0, :null => false
-    t.integer "word_meaning_id2", :default => 0, :null => false
-  end
-
-  add_index "antonyms", ["word_meaning_id1", "word_meaning_id2"], :name => "word_meaning_id1"
-  add_index "antonyms", ["word_meaning_id1"], :name => "word_meaning_id1_2", :unique => true
-  add_index "antonyms", ["word_meaning_id2"], :name => "word_meaning_id2", :unique => true
-
-  create_table "db_sequence", :primary_key => "seq_name", :force => true do |t|
-    t.integer "nextid", :default => 0, :null => false
-  end
-
   create_table "meanings", :force => true do |t|
     t.string   "description"
     t.datetime "created_at"
@@ -46,11 +33,10 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "significations", :id => false, :force => true do |t|
     t.integer   "word_id",    :default => 0, :null => false
     t.integer   "meaning_id", :default => 0, :null => false
-    t.integer   "use_id"
     t.timestamp "when_added",                :null => false
   end
 
-  create_table "suggested", :force => true do |t|
+  create_table "user-suggestions", :force => true do |t|
     t.string   "word",               :limit => 256, :null => false
     t.integer  "status",             :limit => 2,   :null => false
     t.datetime "created_at",                        :null => false
@@ -59,11 +45,11 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   create_table "user_comments", :force => true do |t|
-    t.timestamp "timestamp",                      :null => false
-    t.string    "email",           :limit => 70,  :null => false
-    t.integer   "word_id",                        :null => false
-    t.text      "comments",        :limit => 255, :null => false
-    t.integer   "revision_status"
+    t.datetime "created_at",                     :null => false
+    t.string   "email",           :limit => 70,  :null => false
+    t.integer  "word_id",                        :null => false
+    t.text     "comments",        :limit => 255, :null => false
+    t.integer  "revision_status"
   end
 
   create_table "words", :force => true do |t|
