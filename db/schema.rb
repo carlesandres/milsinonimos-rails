@@ -27,8 +27,9 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   create_table "meanings", :force => true do |t|
-    t.string    "description"
-    t.timestamp "when_added",  :null => false
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at"
   end
 
   create_table "old_removed_words", :force => true do |t|
