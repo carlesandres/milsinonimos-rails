@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426224754) do
+ActiveRecord::Schema.define(:version => 20130427125107) do
 
   create_table "meanings", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(:version => 20130426224754) do
   end
 
   add_index "searches", ["word_id"], :name => "word_id"
+
+  create_table "significations", :force => true do |t|
+    t.integer  "word_id",    :default => 0, :null => false
+    t.integer  "meaning_id", :default => 0, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at"
+  end
+
+  add_index "significations", ["meaning_id"], :name => "meaning_id"
+  add_index "significations", ["word_id"], :name => "word_id"
 
   create_table "suggestions", :force => true do |t|
     t.string   "word",               :limit => 256, :null => false
@@ -51,16 +61,6 @@ ActiveRecord::Schema.define(:version => 20130426224754) do
     t.string "username", :limit => 256, :null => false
     t.string "password", :limit => 40,  :null => false
   end
-
-  create_table "word_meanings", :force => true do |t|
-    t.integer   "word_id",    :default => 0, :null => false
-    t.integer   "meaning_id", :default => 0, :null => false
-    t.integer   "use_id"
-    t.timestamp "when_added",                :null => false
-  end
-
-  add_index "word_meanings", ["meaning_id"], :name => "meaning_id"
-  add_index "word_meanings", ["word_id"], :name => "word_id"
 
   create_table "words", :force => true do |t|
     t.string   "entry",      :default => "", :null => false
