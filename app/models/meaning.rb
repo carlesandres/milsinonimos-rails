@@ -1,4 +1,4 @@
 class Meaning < ActiveRecord::Base
-  has_and_belongs_to_many :words
-  belongs_to :synonim, :class_name => "Word"
+  has_many :significations
+  has_many :synonims, :through => :significations, :class_name => "Word"
 end

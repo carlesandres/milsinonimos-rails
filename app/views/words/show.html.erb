@@ -1,10 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Entry:</b>
-  <%= @word.entry %>
+  <b>Entry:</b> <%= @word.entry %>
+</p>
+<p>
+  <b>Synonims:</b>
   <%= @word.meanings.each do |mean| %>
-    <li><%= mean.description %></li>
+    <li>
+    <%= mean.synonims.each do |t| %>
+      <%= t.entry %>, 
+    <% end %>
+    </li>
   <% end %>
 </p>
 
