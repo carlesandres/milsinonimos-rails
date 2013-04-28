@@ -14,6 +14,7 @@ class WordsController < ApplicationController
   # GET /words/1.json
   def show
     @word = Word.find(params[:id])
+    @meanings = @word.meanings
 
     respond_to do |format|
       format.html # show.html.erb

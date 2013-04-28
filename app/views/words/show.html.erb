@@ -5,15 +5,11 @@
 </p>
 <p>
   <b>Synonims:</b>
-  <%= @word.meanings.each do |mean| %>
+  <% @meanings.each do |mean| %>
     <li>
-    <%= mean.synonims.each do |t| %>
-      <%= t.entry %>, 
+    <% mean.synonims.each do |t| %>
+      <%= t.entry %>,
     <% end %>
     </li>
   <% end %>
 </p>
-
-
-<%= link_to 'Edit', edit_word_path(@word) %> |
-<%= link_to 'Back', words_path %>
