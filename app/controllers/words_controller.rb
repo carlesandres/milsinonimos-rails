@@ -15,6 +15,7 @@ class WordsController < ApplicationController
   def show
     @word = Word.find(params[:id])
     @meanings = @word.meanings
+    @synonims = @word.synonims
 
     respond_to do |format|
       format.html # show.html.erb
