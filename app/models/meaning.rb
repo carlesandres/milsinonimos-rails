@@ -1,8 +1,9 @@
 class Meaning < ActiveRecord::Base
-  has_many :significations
-  has_many :synonims, :through => :significations, :class_name => "Word" do
-    def true_sins
-      puts self.proxy_association.target
-    end
-  end
+  has_and_belongs_to_many :words
+  has_and_belongs_to_many :synonims, :class_name => "Word"
+#    def true_sins
+#      where('word_id <> ?', 1)
+#      puts proxy_association.owner.proxy_association.owner
+#    end
+#  end
 end
