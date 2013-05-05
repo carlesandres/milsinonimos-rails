@@ -82,4 +82,15 @@ class WordsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # GET /sinonimos/1
+  # GET /sinonimos/1.json
+  def sinonimos
+    @meanings = Word.includes(:meanings => :synonims).find(params[:id]).meanings
+
+    respond_to do |format|
+      format.html # sinonimos.html.erb
+      format.json { render json: @meanings.as_json(only: [:id], include: {synonims: {only: [:entry]}}) }
+    end
+  end
 end
