@@ -83,10 +83,10 @@ class WordsController < ApplicationController
     end
   end
 
-  # GET /sinonimos/1
-  # GET /sinonimos/1.json
+  # GET /sinonimos/amor
+  # GET /sinonimos/amor.json
   def sinonimos
-    @meanings = Word.includes(:meanings => :synonims).find(params[:id]).meanings
+    @meanings = Word.includes(:meanings => :synonims).find_by_entry(params[:name]).meanings
 
     respond_to do |format|
       format.html # sinonimos.html.erb

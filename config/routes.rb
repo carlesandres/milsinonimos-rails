@@ -1,5 +1,7 @@
 Newsino::Application.routes.draw do
-  match 'sinonimos/:id' => 'words#sinonimos'
+  resources :words
+
+  match 'sinonimos/:name' => 'words#sinonimos'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
