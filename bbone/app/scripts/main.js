@@ -1,4 +1,4 @@
-/*global require*/
+/*global require, $*/
 'use strict';
 
 require.config({
@@ -30,4 +30,11 @@ require([
     'backbone'
 ], function (Backbone) {
     Backbone.history.start();
+    $.get('/sinonimos/casa.json', function( response ) {
+        console.log( response );
+    }, 'json' );
 });
+
+
+
+

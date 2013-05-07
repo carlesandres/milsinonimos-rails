@@ -1,5 +1,6 @@
 'use strict';
 var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
@@ -57,11 +58,22 @@ module.exports = function (grunt) {
                 // change this to '0.0.0.0' to access the server from outside
                 hostname: 'localhost'
             },
+            proxies: [
+                {
+                    context: '/sinonimos',
+                    host: '0.0.0.0',
+                    port: 3000,
+                    https: false,
+                    changeOrigin: true
+                }
+            ],
             livereload: {
                 options: {
                     middleware: function (connect) {
                         return [
                             lrSnippet,
+                            connect.static(__dirname),
+                            proxySnippet,
                             mountFolder(connect, '.tmp'),
                             mountFolder(connect, 'app')
                         ];
@@ -272,6 +284,7 @@ module.exports = function (grunt) {
             'coffee:dist',
             'jst',
             'compass:server',
+            'configureProxies',
             'livereload-start',
             'connect:livereload',
             'open',
