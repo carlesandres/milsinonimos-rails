@@ -2,28 +2,29 @@
 @import '../styles/custom_variables.scss';
 
 .content_area {
-  background: $gray;
+  background: $content_area_bg;
   padding: 10px;
   border-radius: 5px;
 
-  .palabra {
+  dl {
+    border-bottom: 1px dashed $separator_col;
+    display: block;
+    padding: 0 10px 4px;
+    margin: 10px;
+
+    dt {
       display: inline-block;
-      background: lightyellow;
+      background: $word_bg;
       border: 1px dashed transparent;
-      border-radius: 2px;
-      padding: 2px;
+      border-radius: 6px;
+      padding: 0 4px;
 
       &:hover {
-        background: $red;
+        background: $word_hover_col;
         cursor: pointer;
         box-shadow: 0 0 20px black;
-        border-color: #000;
+        border-color: $word_b_col;
       }
+    }
   }
-}
-
-
-.significance {
-    padding: 0 0 4px 0;
-    border-bottom: 2px dashed black;
 }
