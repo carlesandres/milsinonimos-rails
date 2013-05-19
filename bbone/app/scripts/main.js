@@ -29,7 +29,9 @@ require.config({
 require([
     'backbone'
 ], function (Backbone) {
+    window.Sino = new SinonimosRouter();
     Backbone.history.start();
+
     $.get('/sinonimos/casa.json', function( response ) {
         console.log( response );
     }, 'json' );
