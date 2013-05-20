@@ -3,25 +3,33 @@
 define([
     'jquery',
     'backbone',
-], function ($, Backbone) {
+    'views/App-view',
+    'collections/Meanings-collection',
+], function ($, Backbone, AppView, MeaningsCollection) {
     'use strict';
 
-    var SinonimosRouter = Backbone.Router.extend({
+    var AppRouter = Backbone.Router.extend({
         routes: {
             '':                         'empty',
             'sinonimos':                'empty',
-            'sinonimos/:palabra':       'search'
+            'sinonimos/:searchedterm':       'search'
+        },
+
+        initialize: function () {
+            Backbone.history.start();
+            this.view = new AppView();
+            this.collection = new MeaningsCollection( );
         },
 
         empty: function() {
 
         },
 
-        search: function(palabra) {
+        search: function(searchedterm) {
 
         }
 
     });
 
-    return SinonimosRouter;
+    return AppRouter;
 });

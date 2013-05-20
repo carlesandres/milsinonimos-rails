@@ -1,7 +1,9 @@
 Newsino::Application.routes.draw do
   resources :words
 
-  match 'sinonimos/:name' => 'words#sinonimos'
+  scope 'sinonimos' do
+    match ':name' => 'words#sinonimos', :defaults => { :format => 'json' }
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

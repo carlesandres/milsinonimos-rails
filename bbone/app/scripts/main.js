@@ -22,19 +22,15 @@ require.config({
         jquery: '../components/jquery/jquery',
         backbone: '../components/backbone-amd/backbone',
         underscore: '../components/underscore-amd/underscore',
-        bootstrap: 'vendor/bootstrap'
+        bootstrap: 'vendor/bootstrap',
+        router: 'routes/Sinonimos-router'
     }
 });
 
 require([
-    'backbone'
-], function (Backbone) {
-    window.Sino = new SinonimosRouter();
-    Backbone.history.start();
-
-    $.get('/sinonimos/casa.json', function( response ) {
-        console.log( response );
-    }, 'json' );
+    'backbone', 'router'
+], function (Backbone, SinonimosRouter) {
+    new SinonimosRouter();
 });
 
 
