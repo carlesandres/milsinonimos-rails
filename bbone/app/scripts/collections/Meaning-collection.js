@@ -3,19 +3,13 @@
 define([
     'underscore',
     'backbone',
-    'models/Meaning-model'
-], function (_, Backbone, MeaningModel) {
+    'models/Meaning-model',
+], function (_, Backbone, Meaning) {
     'use strict';
 
-    var MeaningCollection = Backbone.Collection.extend({
-        model: MeaningModel,
-
-        initialize: function ( ) {
-            this.searchedterm = '';
-        }
-
-
+    var Meanings = Backbone.Collection.extend({
+        model: Meaning,
     });
 
-    return MeaningCollection;
+    return Meanings;
 });

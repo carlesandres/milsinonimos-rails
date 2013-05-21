@@ -23,14 +23,14 @@ require.config({
         backbone: '../components/backbone-amd/backbone',
         underscore: '../components/underscore-amd/underscore',
         bootstrap: 'vendor/bootstrap',
-        router: 'routes/Sinonimos-router'
+        router: 'routes/Router'
     }
 });
 
 require([
     'backbone', 'router'
-], function (Backbone, SinonimosRouter) {
-    new SinonimosRouter();
+], function (Backbone, Router) {
+        new Router();
 });
 
 

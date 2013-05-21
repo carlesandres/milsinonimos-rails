@@ -1,0 +1,287 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <silent> <C-Tab> =UltiSnips_ListSnippets()
+inoremap <Plug>ZenCodingAnchorizeSummary :call zencoding#anchorizeURL(1)a
+inoremap <Plug>ZenCodingAnchorizeURL :call zencoding#anchorizeURL(0)a
+inoremap <Plug>ZenCodingRemoveTag :call zencoding#removeTag()a
+inoremap <Plug>ZenCodingSplitJoinTagInsert :call zencoding#splitJoinTag()
+inoremap <Plug>ZenCodingToggleComment :call zencoding#toggleComment()a
+inoremap <Plug>ZenCodingImageSize :call zencoding#imageSize()a
+inoremap <Plug>ZenCodingPrev :call zencoding#moveNextPrev(1)
+inoremap <Plug>ZenCodingNext :call zencoding#moveNextPrev(0)
+inoremap <Plug>ZenCodingBalanceTagOutwardInsert :call zencoding#balanceTag(-1)
+inoremap <Plug>ZenCodingBalanceTagInwardInsert :call zencoding#balanceTag(1)
+inoremap <Plug>ZenCodingExpandWord u:call zencoding#expandAbbr(1,"")a
+inoremap <Plug>ZenCodingExpandAbbr u:call zencoding#expandAbbr(0,"")a
+vmap c <Plug>ZenCodingCodePretty
+nmap A <Plug>ZenCodingAnchorizeSummary
+nmap a <Plug>ZenCodingAnchorizeURL
+nmap k <Plug>ZenCodingRemoveTag
+nmap j <Plug>ZenCodingSplitJoinTagNormal
+vmap m <Plug>ZenCodingMergeLines
+nmap / <Plug>ZenCodingToggleComment
+nmap i <Plug>ZenCodingImageSize
+nmap N <Plug>ZenCodingPrev
+nmap n <Plug>ZenCodingNext
+vmap D <Plug>ZenCodingBalanceTagOutwardVisual
+nmap D <Plug>ZenCodingBalanceTagOutwardNormal
+vmap d <Plug>ZenCodingBalanceTagInwardVisual
+nmap d <Plug>ZenCodingBalanceTagInwardNormal
+nmap , <Plug>ZenCodingExpandNormal
+vmap , <Plug>ZenCodingExpandVisual
+snoremap <silent>  c
+xnoremap 	 :call UltiSnips_SaveLastVisualSelection()gvs
+snoremap <silent> 	 :call UltiSnips_ExpandSnippet()
+snoremap <silent> <NL> :call UltiSnips_JumpForwards()
+snoremap <silent>  :call UltiSnips_JumpBackwards()
+noremap  :noh
+nnoremap <silent>  :CtrlP
+nmap o <Plug>ZoomWin
+noremap   <PageDown>
+nmap <silent> ,sv :so $MYVIMRC
+nmap <silent> ,ev :e $MYVIMRC
+noremap - <PageUp>
+xmap S <Plug>VSurround
+map \d :call SearchDash()
+nmap cs <Plug>Csurround
+nmap ds <Plug>Dsurround
+nmap gx <Plug>NetrwBrowseX
+xmap gS <Plug>VgSurround
+nmap ySS <Plug>YSsurround
+nmap ySs <Plug>YSsurround
+nmap yss <Plug>Yssurround
+nmap yS <Plug>YSurround
+nmap ys <Plug>Ysurround
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
+nnoremap <silent> <Plug>SurroundRepeat .
+snoremap <silent> <Del> c
+snoremap <silent> <BS> c
+snoremap <silent> <C-Tab> :call UltiSnips_ListSnippets()
+vnoremap <Plug>ZenCodingCodePretty :call zencoding#codePretty()
+nnoremap <Plug>ZenCodingAnchorizeSummary :call zencoding#anchorizeURL(1)
+nnoremap <Plug>ZenCodingAnchorizeURL :call zencoding#anchorizeURL(0)
+nnoremap <Plug>ZenCodingRemoveTag :call zencoding#removeTag()
+nnoremap <Plug>ZenCodingSplitJoinTagNormal :call zencoding#splitJoinTag()
+vnoremap <Plug>ZenCodingMergeLines :call zencoding#mergeLines()
+nnoremap <Plug>ZenCodingToggleComment :call zencoding#toggleComment()
+nnoremap <Plug>ZenCodingImageSize :call zencoding#imageSize()
+nnoremap <Plug>ZenCodingPrev :call zencoding#moveNextPrev(1)
+nnoremap <Plug>ZenCodingNext :call zencoding#moveNextPrev(0)
+vnoremap <Plug>ZenCodingBalanceTagOutwardVisual :call zencoding#balanceTag(-2)
+nnoremap <Plug>ZenCodingBalanceTagOutwardNormal :call zencoding#balanceTag(-1)
+vnoremap <Plug>ZenCodingBalanceTagInwardVisual :call zencoding#balanceTag(2)
+nnoremap <Plug>ZenCodingBalanceTagInwardNormal :call zencoding#balanceTag(1)
+nnoremap <Plug>ZenCodingExpandWord :call zencoding#expandAbbr(1,"")
+nnoremap <Plug>ZenCodingExpandNormal :call zencoding#expandAbbr(3,"")
+vnoremap <Plug>ZenCodingExpandVisual :call zencoding#expandAbbr(2,"")
+xmap <BS> "-d
+imap A <Plug>ZenCodingAnchorizeSummary
+imap a <Plug>ZenCodingAnchorizeURL
+imap k <Plug>ZenCodingRemoveTag
+imap j <Plug>ZenCodingSplitJoinTagInsert
+imap / <Plug>ZenCodingToggleComment
+imap i <Plug>ZenCodingImageSize
+imap N <Plug>ZenCodingPrev
+imap n <Plug>ZenCodingNext
+imap D <Plug>ZenCodingBalanceTagOutwardInsert
+imap d <Plug>ZenCodingBalanceTagInwardInsert
+imap ; <Plug>ZenCodingExpandWord
+imap , <Plug>ZenCodingExpandAbbr
+imap S <Plug>ISurround
+imap s <Plug>Isurround
+inoremap <silent> 	 =UltiSnips_ExpandSnippet()
+inoremap <silent> <NL> =UltiSnips_JumpForwards()
+inoremap <silent>  =UltiSnips_JumpBackwards()
+imap  <Plug>Isurround
+cmap E Ex 
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set autoread
+set background=dark
+set backspace=indent,eol,start
+set balloonexpr=SyntasticBalloonsExprNotifier()
+set expandtab
+set fileencodings=ucs-bom,utf-8,default,latin1
+set gdefault
+set guifont=Monaco:h18
+set helplang=en
+set hidden
+set ignorecase
+set incsearch
+set iskeyword=@,48-57,_,192-255,$
+set nojoinspaces
+set langmenu=none
+set laststatus=2
+set listchars=tab:‚ñ∏\ ,trail:‚Ä¢,extends:‚ùØ,precedes:‚ùÆ
+set ruler
+set runtimepath=~/.vim,~/.vim/bundle/ZoomWin,~/.vim/bundle/ctrlp.vim,~/.vim/bundle/editorconfig-vim-master,~/.vim/bundle/gist-vim,~/.vim/bundle/jshint.vim,~/.vim/bundle/powerline,~/.vim/bundle/syntastic,~/.vim/bundle/tabular,~/.vim/bundle/ultisnips,~/.vim/bundle/vim-bundler,~/.vim/bundle/vim-colors-solarized,~/.vim/bundle/vim-cucumber,~/.vim/bundle/vim-fugitive,~/.vim/bundle/vim-javascript,~/.vim/bundle/vim-rails,~/.vim/bundle/vim-surround,~/.vim/bundle/webapi-vim,~/.vim/bundle/zencoding-vim,~/Applications/MacVim.app/Contents/Resources/vim/vimfiles,~/Applications/MacVim.app/Contents/Resources/vim/runtime,~/Applications/MacVim.app/Contents/Resources/vim/vimfiles/after,~/.vim/bundle/tabular/after,~/.vim/bundle/ultisnips/after,~/.vim/after
+set scrolloff=8
+set shellcmdflag=-ic
+set shiftwidth=2
+set showbreak=‚Ü™\\
+set smartcase
+set softtabstop=2
+set splitbelow
+set splitright
+set statusline=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]%#warningmsg#%{SyntasticStatuslineFlag()}%*
+set tabstop=2
+set notimeout
+set ttimeout
+set ttimeoutlen=100
+set undodir=~/.vim/backups
+set undofile
+set wildmenu
+set window=16
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd /Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino/bbone
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +38 app/scripts/main.js
+badd +8 app/scripts/views/App-view.js
+badd +12 app/scripts/collections/Meaning-collection.js
+badd +13 app/scripts/views/Results-view.js
+badd +0 app/scripts/routes/Router.js
+args app/scripts/main.js
+edit app/scripts/routes/Router.js
+set splitbelow splitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer> f <Plug>RailsSplitFind
+nmap <buffer> gf <Plug>RailsFind
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal noautoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=//%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'javascript'
+setlocal filetype=javascript
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=RailsIncludeexpr()
+setlocal indentexpr=GetJavascriptIndent()
+setlocal indentkeys=0{,0},0),0],0,,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,$
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal list
+setlocal nomacmeta
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal path=.,lib,vendor,app/models/concerns,app/controllers/concerns,app/controllers,app/helpers,app/mailers,app/models,app/*,app/views,test,test/unit,test/functional,test/integration,test/controllers,test/helpers,test/mailers,test/models,spec,spec/controllers,spec/helpers,spec/mailers,spec/models,spec/views,spec/lib,spec/features,spec/requests,spec/integration,features,vendor/plugins/*/lib,vendor/plugins/*/test,vendor/rails/*/lib,vendor/rails/*/test,/Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino,/usr/include,
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.rb
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'javascript'
+setlocal syntax=javascript
+endif
+setlocal tabstop=2
+setlocal tags=/Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino/tags,/Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino/tmp/tags,/Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino/.git/javascript.tags,/Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino/.git/tags,./tags,tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal undofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 25 - ((17 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+25
+normal! 0
+lcd /Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino/bbone
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

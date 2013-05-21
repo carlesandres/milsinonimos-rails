@@ -4,31 +4,30 @@ define([
     'jquery',
     'backbone',
     'views/App-view',
-    'collections/Meanings-collection',
+    'collections/Meaning-collection',
 ], function ($, Backbone, AppView, MeaningsCollection) {
     'use strict';
 
     var AppRouter = Backbone.Router.extend({
         routes: {
-            '':                         'empty',
-            'sinonimos':                'empty',
-            'sinonimos/:searchedterm':       'search'
+            'aja':               'log',
+            '':                  'empty'
         },
 
         initialize: function () {
-            Backbone.history.start();
+            Backbone.history.start( { pushState: true } );
+            //Backbone.history.start( { pushState: true, hashChange: false } );
             this.view = new AppView();
             this.collection = new MeaningsCollection( );
         },
 
         empty: function() {
-
+            console.log('empty');
         },
 
-        search: function(searchedterm) {
-
-        }
-
+        log: function() {
+            console.log('aja');
+        },
     });
 
     return AppRouter;

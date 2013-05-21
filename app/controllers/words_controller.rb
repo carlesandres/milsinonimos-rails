@@ -8,10 +8,10 @@ class WordsController < ApplicationController
 
   # GET /sinonimos/amor
   def sinonimos
-    @meanings = Word.includes(:meanings => :synonims).find_by_entry(params[:name]).meanings
+    @meanings = Word.includes(:meanings => :synonims).find_by_entry(params[:name])
 
     respond_with(@meanings) do |format|
-      format.json { render json: @meanings.as_json(only: [:id], include: {synonims: {only: [:entry]}}) }
+      format.json { render json: @meanings.as_json(only: [:entry], include: {meanings: {only: [:id], include: {synonims: {only: [:entry]}}}}) }
     end
   end
 end
