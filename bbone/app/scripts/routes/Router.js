@@ -15,8 +15,7 @@ define([
         },
 
         initialize: function () {
-            Backbone.history.start( { pushState: true } );
-            //Backbone.history.start( { pushState: true, hashChange: false } );
+            Backbone.history.start( { pushState: true, hashChange: false } );
             this.view = new AppView();
             this.collection = new MeaningsCollection( );
         },

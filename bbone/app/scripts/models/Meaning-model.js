@@ -8,7 +8,8 @@ define([
 
     var MeaningModel = Backbone.Model.extend({
         defaults: {
-        }
+            synonims: ''
+        },
     });
 
     return MeaningModel;

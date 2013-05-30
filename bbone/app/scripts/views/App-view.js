@@ -6,37 +6,37 @@ define([
     'backbone',
     'templates',
     'models/Word-model',
-    'collections/Meaning-collection',
-], function ($, _, Backbone, JST, Word) {
+    'views/Meaning-view',
+], function ($, _, Backbone, JST, word, MView) {
     'use strict';
-
-    // AppView listens to user input in the #searchbox,
-    // validates it and triggers a change word.name 
-    // which should trigger a Meanings COllection updated
-    // which should trigger a ResultsView update.
-    // If validation fails, AppView displays an error message to the user
 
     var AppView = Backbone.View.extend({
         el: '#central',
         template: JST['app/scripts/templates/App.ejs'],
         events: {
-            'keyup #searchbox':  'searchIfPossible'
+            'keyup #searchbox':  'trySearch'
         },
 
         initialize: function () {
-            this.listenTo(Word, 'sync', this.render);
-
+            this.model = word;
+            this.listenTo(word, 'sync', this.renderSynonims);
         },
 
         render: function () {
-            console.log( 'Word changed');
         },
 
-        searchIfPossible: function () {
+        renderSynonims: function () {
+            $('#results').html('');
+            word.get('meanings').each( function ( meaning ) {
+                var view = new MView( { model: meaning } );
+                $('#results').append( view.render().el );
+            } );
+        },
+
+        trySearch: function () {
             var searchterm = $('#searchbox').val() ;
             if ( this.validateSearchTerm(searchterm)) {
-                Word.set( 'id', encodeURIComponent(searchterm) );
-                //this.word.fetch();
+                word.set( 'id', encodeURIComponent(searchterm) );
             } else {
                 console.log('Error in search term');
             }
@@ -44,9 +44,7 @@ define([
 
         validateSearchTerm: function () {
             return true;
-        }
-
-
+        },
     });
 
     return AppView;

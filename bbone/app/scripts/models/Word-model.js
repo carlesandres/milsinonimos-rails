@@ -14,7 +14,6 @@ define([
         },
 
         initialize: function () {
-            this.meanings = new MeaningsCollection( );
             this.on('change:id', this.update, this);
             this.on('sync', this.afterUpdate, this);
         },
@@ -29,8 +28,6 @@ define([
         },
 
         afterUpdate: function () {
-            console.log( 'Model has been updated' );
-            console.log( this.get('meanings').at(1).get('synonims') );
         },
 
         urlRoot: '/sinonimos'
