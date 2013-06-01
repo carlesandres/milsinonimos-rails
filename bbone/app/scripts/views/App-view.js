@@ -19,22 +19,35 @@ define([
 
         initialize: function () {
             this.model = word;
-            this.listenTo(word, 'sync', this.renderSynonims);
+            this.listenTo(word, 'sync', this.handleSynonims);
         },
 
         render: function () {
         },
 
-        renderSynonims: function () {
-            $('#results').html('');
-            word.get('meanings').each( function ( meaning ) {
-                var view = new MView( { model: meaning } );
-                $('#results').append( view.render().el );
-            } );
+        handleSynonims: function () {
+            var searchterm = encodeURIComponent( $('#searchbox').val() );
+            if ( searchterm === word.get('entry') ) {
+                $('#results').html('');
+                word.get('meanings').each( function ( meaning ) {
+                    var view = new MView( { model: meaning } );
+                    $('#results').append( view.render().el );
+                } );
+                //var aa = this.logSearch ;
+                window.setTimeout( _.bind( this.logSearch, this), 1000, searchterm );
+            }
+        },
+
+        logSearch: function ( searchterm ) {
+            // If the fetched term is still the current search term, then log it
+            if ( searchterm === encodeURIComponent( $('#searchbox').val() ) ) {
+                console.log( 'Registrando término: ' + searchterm );
+            }
         },
 
         trySearch: function () {
             var searchterm = $('#searchbox').val() ;
+            $('#results').html( 'Espera...' );
             if ( this.validateSearchTerm(searchterm)) {
                 word.set( 'id', encodeURIComponent(searchterm) );
             } else {
