@@ -60,7 +60,7 @@ module.exports = function (grunt) {
             },
             proxies: [
                 {
-                    context: '/sinonimos',
+                    context: '',
                     host: '0.0.0.0',
                     port: 3000,
                     https: false,
