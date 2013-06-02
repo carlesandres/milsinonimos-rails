@@ -1,5 +1,7 @@
 Newsino::Application.routes.draw do
-  match ':name' => 'main#show'
+  scope 'api' do
+    match ':name' => 'main#show'
+  end
 
   scope 'sinonimos' do
     match ':name' => 'words#sinonimos', :defaults => { :format => 'json' }
