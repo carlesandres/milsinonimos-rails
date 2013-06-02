@@ -1,6 +1,18 @@
 @import 'sass-bootstrap/lib/bootstrap';
 @import '../styles/custom_variables.scss';
 
+.hero-unit {
+  padding: 20px;
+}
+
+.form-search {
+  padding: 5px;
+}
+
+.search-query {
+  width: 400px;
+}
+
 .content_area {
   background: $content_area_bg;
   padding: 10px;
@@ -16,6 +28,7 @@
       margin: 10px;
 
       a {
+        color: $link_color;
         display: inline-block;
         background: $word_bg;
         border: 1px dashed transparent;
@@ -23,11 +36,12 @@
         padding: 0 4px;
         margin: 5px;
 
-        &:hover {
+        &:hover, &:focus {
+          color: $link_color;
+          text-decoration: none;
           background: $word_hover_col;
           cursor: pointer;
           box-shadow: 0 0 20px black;
-          border-color: $word_b_col;
         }
       }
     }

@@ -2,10 +2,9 @@
 
 define([
     'jquery',
+    'underscore',
     'backbone',
-    'views/App-view',
-    'collections/Meaning-collection',
-], function ($, Backbone, AppView, word, MeaningsCollection) {
+], function ($, _, Backbone) {
     'use strict';
 
     var AppRouter = Backbone.Router.extend({
@@ -25,10 +24,11 @@ define([
                     evt.preventDefault();
                     route.navigate(href, true);
                 }
+
             });
 
-            this.view = new AppView();
-            this.collection = new MeaningsCollection( );
+            //this.view = new AppView();
+            //this.collection = new MeaningsCollection( );
         },
 
         updateWord: function( searchedterm ) {

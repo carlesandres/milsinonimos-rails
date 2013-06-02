@@ -15,7 +15,6 @@ define([
 
         initialize: function () {
             this.on('change:id', this.update, this);
-            this.on('sync', this.afterUpdate, this);
         },
 
         update: function () {
@@ -25,9 +24,6 @@ define([
         parse: function (response) {
             response.meanings = new MeaningsCollection(response.meanings);
             return response;
-        },
-
-        afterUpdate: function () {
         },
 
         urlRoot: '/sinonimos'

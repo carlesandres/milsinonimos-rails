@@ -1,1 +1,1 @@
-<% _.each( synonims, function( sin ) { %><a href="/<%- sin %>"><%= sin %></a><% } ); %>
+<% _.each( synonims, function( sin ) { %><a href="/<%- encodeURIComponent(sin) %>"><%= sin %></a><% } ); %>

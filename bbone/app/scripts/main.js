@@ -28,9 +28,10 @@ require.config({
 });
 
 require([
-    'backbone', 'router'
-], function (Backbone, Router) {
-        new Router();
+    'backbone', 'router', 'views/App-view'
+], function (Backbone, Router, AppView) {
+        var router = new Router();
+        router.view = new AppView( { router: router } );
 });
 
 

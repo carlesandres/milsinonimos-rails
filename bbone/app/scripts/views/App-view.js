@@ -14,6 +14,7 @@ define([
         el: '#central',
         template: JST['app/scripts/templates/App.ejs'],
         events: {
+            'keydown #searchbox':  'prevent',
             'keyup #searchbox':  'trySearch'
         },
 
@@ -22,18 +23,15 @@ define([
             this.listenTo(word, 'sync', this.handleSynonims);
         },
 
-        render: function () {
-        },
-
         handleSynonims: function () {
             var searchterm = encodeURIComponent( $('#searchbox').val() );
-            if ( searchterm === word.get('entry') ) {
+            if ( searchterm === encodeURIComponent(word.get('entry')) ) {
+                this.options.router.navigate( searchterm );
                 $('#results').html('');
                 word.get('meanings').each( function ( meaning ) {
                     var view = new MView( { model: meaning } );
                     $('#results').append( view.render().el );
                 } );
-                //var aa = this.logSearch ;
                 window.setTimeout( _.bind( this.logSearch, this), 1000, searchterm );
             }
         },
@@ -45,13 +43,19 @@ define([
             }
         },
 
-        trySearch: function () {
-            var searchterm = $('#searchbox').val() ;
-            $('#results').html( 'Espera...' );
-            if ( this.validateSearchTerm(searchterm)) {
-                word.set( 'id', encodeURIComponent(searchterm) );
-            } else {
-                console.log('Error in search term');
+        prevent: function( evt ) {
+            (evt.which !== 13) || evt.preventDefault();
+        },
+
+        trySearch: function ( evt ) {
+            var searchterm = $.trim( $('#searchbox').val() ) ;
+            if ( word.id !== searchterm ) {
+                $('#results').html( 'Buscando...' + searchterm );
+                if ( this.validateSearchTerm(searchterm)) {
+                    word.set( 'id', searchterm );
+                } else {
+                    console.log('Error in search term');
+                }
             }
         },
 

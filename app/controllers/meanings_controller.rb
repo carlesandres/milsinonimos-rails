@@ -13,7 +13,9 @@ class MeaningsController < ApplicationController
   # GET /meanings/1
   # GET /meanings/1.json
   def show
-    @meaning = Meaning.find(params[:id])
+    unescaped_id = URI.escape(params[:id], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+    @meaning = Meaning.find(URI.unescape(unescaped_id))
+    #@meaning = Meaning.find(URI.unescape(params[:id]))
 
     respond_to do |format|
       format.html # show.html.erb
