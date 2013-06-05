@@ -203,7 +203,8 @@ module.exports = function (grunt) {
             html: ['<%= yeoman.dist %>/{,*/}*.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {
-                dirs: ['<%= yeoman.dist %>']
+                dirs: ['<%= yeoman.dist %>'],
+                basedir: '/'
             }
         },
         imagemin: {
@@ -260,6 +261,11 @@ module.exports = function (grunt) {
                         'images/{,*/}*.{webp,gif}'
                     ]
                 }]
+            },
+            rails: {
+                files: {
+                    '../app/views/layouts/application.html.erb': '<%= yeoman.dist %>/index.html'
+                }
             }
         },
         bower: {
@@ -320,8 +326,9 @@ module.exports = function (grunt) {
         'concat',
         'cssmin',
         'uglify',
-        'copy',
-        'usemin'
+        'copy:dist',
+        'usemin',
+        'copy:rails'
     ]);
 
     grunt.registerTask('default', [

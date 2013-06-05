@@ -44,10 +44,10 @@ define([
         },
 
         prevent: function( evt ) {
-            (evt.which !== 13) || evt.preventDefault();
+            if (evt.which === 13) { evt.preventDefault(); }
         },
 
-        trySearch: function ( evt ) {
+        trySearch: function ( ) {
             var searchterm = $.trim( $('#searchbox').val() ) ;
             if ( word.id !== searchterm ) {
                 $('#results').html( 'Buscando...' + searchterm );

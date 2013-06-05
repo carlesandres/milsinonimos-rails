@@ -10,8 +10,13 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- build:js scripts/vendor/modernizr.js -->
+        <!-- build:css styles/main.css -->
+          <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+
+
+        <!-- build:js /scripts/vendor/modernizr.js -->
         <script src="components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
     </head>
@@ -29,6 +34,8 @@
             </div>
         </div>
         <div class="container" id="central">
+
+
             <div class="row-fluid">
                 <div class="span8 content_area">
                     <form class="form-search">
@@ -36,17 +43,8 @@
                         <input type="text" class="input-medium search-query" id="searchbox" autofocus>
                     </form>
                     <div id="results">
+    <!-- yield -->
                     </div>
-                </div>
-                <div class="span4 content_area" id="last_searches">
-                    <p>Últimas búsquedas:</p>
-                    <ul class="vert-list">
-                        <li class="palabra">Primera</li>
-                        <li class="palabra">Segunda</li>
-                        <li class="palabra">Tercera</li>
-                        <li class="palabra">Cuarta</li>
-                        <li class="palabra">Quinta</li>
-                    </ul>
                 </div>
             </div>
         </div>

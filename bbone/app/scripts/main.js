@@ -1,4 +1,4 @@
-/*global require, $*/
+/*global require*/
 'use strict';
 
 require.config({
@@ -32,7 +32,7 @@ require([
 ], function (Backbone, Router, AppView) {
         var router = new Router();
         router.view = new AppView( { router: router } );
-});
+    });
 
 
 
