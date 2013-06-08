@@ -22,7 +22,9 @@ define([
         },
 
         parse: function (response) {
-            response.meanings = new MeaningsCollection(response.meanings);
+            if ( response.meanings ) {
+                response.meanings = new MeaningsCollection(response.meanings);
+            }
             return response;
         },
 

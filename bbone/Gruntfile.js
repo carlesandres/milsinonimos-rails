@@ -72,6 +72,13 @@ module.exports = function (grunt) {
                     port: 3000,
                     https: false,
                     changeOrigin: true
+                },
+                {
+                    context: '/search',
+                    host: '0.0.0.0',
+                    port: 3000,
+                    https: false,
+                    changeOrigin: true
                 }
             ],
             livereload: {

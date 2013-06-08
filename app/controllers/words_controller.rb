@@ -10,6 +10,10 @@ class WordsController < ApplicationController
   def sinonimos
     @meanings = Word.includes(:meanings => :synonims).find_by_entry(params[:name])
 
+    if @meanings.blank?
+      @meanings = { :entry => params[:name] }
+    end
+
     respond_with(@meanings) do |format|
       format.json { render json: @meanings.as_json(only: [:entry], include: {meanings: {only: [:id], include: {synonims: {only: [:entry]}}}}) }
     end

@@ -26,14 +26,26 @@ define([
         handleSynonims: function () {
             var searchterm = encodeURIComponent( $('#searchbox').val() );
             if ( searchterm === encodeURIComponent(word.get('entry')) ) {
-                this.options.router.navigate( searchterm );
-                $('#results').html('');
-                word.get('meanings').each( function ( meaning ) {
-                    var view = new MView( { model: meaning } );
-                    $('#results').append( view.render().el );
-                } );
-                window.setTimeout( _.bind( this.logSearch, this), 1000, searchterm );
+                if ( word.get('meanings') ) {
+                    this.showResults(searchterm) ;
+                } else {
+                    this.showNotFound();
+                }
             }
+        },
+
+        showResults: function (searchterm) {
+            this.options.router.navigate( searchterm );
+            $('#results').html('');
+            word.get('meanings').each( function ( meaning ) {
+                var view = new MView( { model: meaning } );
+                $('#results').append( view.render().el );
+            } );
+            window.setTimeout( _.bind( this.logSearch, this), 1000, searchterm );
+        },
+
+        showNotFound: function () {
+            $('#results').html('Este término no se encuentra en nuestro diccionario');
         },
 
         logSearch: function ( searchterm ) {
@@ -49,8 +61,13 @@ define([
 
         trySearch: function ( ) {
             var searchterm = $.trim( $('#searchbox').val() ) ;
+            if ( !searchterm ) {
+                $('#results').html('');
+                return;
+            }
+
             if ( word.id !== searchterm ) {
-                $('#results').html( 'Buscando...' + searchterm );
+                $('#results').html( '<img src="images/loading.gif">' );
                 if ( this.validateSearchTerm(searchterm)) {
                     word.set( 'id', searchterm );
                 } else {
