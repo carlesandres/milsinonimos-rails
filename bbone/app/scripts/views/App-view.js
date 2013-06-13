@@ -26,10 +26,10 @@ define([
         handleSynonims: function () {
             var searchterm = encodeURIComponent( $('#searchbox').val() );
             if ( searchterm === encodeURIComponent(word.get('entry')) ) {
-                if ( word.get('meanings') ) {
-                    this.showResults(searchterm) ;
-                } else {
+                if ( word.get('status') === 'not_found' ) {
                     this.showNotFound();
+                } else {
+                    this.showResults(searchterm) ;
                 }
             }
         },

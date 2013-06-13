@@ -11,11 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427125107) do
+ActiveRecord::Schema.define(:version => 20130427130110) do
 
   create_table "meanings", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at"
+  end
+
+  create_table "meanings_words", :id => false, :force => true do |t|
+    t.integer "word_id",    :default => 0, :null => false
+    t.integer "meaning_id", :default => 0, :null => false
   end
 
   create_table "rejection_causes", :force => true do |t|
@@ -31,14 +36,19 @@ ActiveRecord::Schema.define(:version => 20130427125107) do
   add_index "searches", ["word_id"], :name => "word_id"
 
   create_table "significations", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "significations_copy", :force => true do |t|
     t.integer  "word_id",    :default => 0, :null => false
     t.integer  "meaning_id", :default => 0, :null => false
     t.datetime "created_at",                :null => false
     t.datetime "updated_at"
   end
 
-  add_index "significations", ["meaning_id"], :name => "meaning_id"
-  add_index "significations", ["word_id"], :name => "word_id"
+  add_index "significations_copy", ["meaning_id"], :name => "meaning_id"
+  add_index "significations_copy", ["word_id"], :name => "word_id"
 
   create_table "suggestions", :force => true do |t|
     t.string   "word",               :limit => 256, :null => false

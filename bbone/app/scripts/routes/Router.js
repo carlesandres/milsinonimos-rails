@@ -24,7 +24,6 @@ define([
                     evt.preventDefault();
                     route.navigate(href, true);
                 }
-
             });
 
             //this.view = new AppView();

@@ -11,6 +11,7 @@ define([
         defaults: {
             entry: '',
             id: '',
+            status: ''
         },
 
         initialize: function () {
@@ -22,9 +23,8 @@ define([
         },
 
         parse: function (response) {
-            if ( response.meanings ) {
-                response.meanings = new MeaningsCollection(response.meanings);
-            }
+            response.status = response.status || 'ok';
+            response.meanings = response.meanings ? new MeaningsCollection(response.meanings) : {};
             return response;
         },
 

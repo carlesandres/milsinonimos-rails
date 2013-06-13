@@ -1,7 +1,5 @@
 <% @word.meanings.each do |m| %>
-  <li>
-  <% m.synonims.each do |s| %>
-    <a href="/<%= s.entry %>"><%= s.entry %></a>
-  <% end %>
-  </li>
+<li>
+<% m.synonims.each do |s| %><a href="/<%= s.entry %>"><%= s.entry %></a><% end %>
+</li>
 <% end %>
