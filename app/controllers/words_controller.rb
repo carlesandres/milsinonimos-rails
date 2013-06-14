@@ -8,10 +8,11 @@ class WordsController < ApplicationController
 
   # GET /sinonimos/amor
   def sinonimos
-    @meanings = Word.syno.find_by_entry(params[:name])
+    searchterm = params[:name]
+    @meanings = Word.includes(:meanings => :synonims).where('`synonims_meanings`.`entry` != ?', searchterm).find_by_entry(searchterm)
 
     if @meanings.blank?
-      @meanings = { :entry => params[:name], :status => 'not_found' }
+      @meanings = { :entry => searchterm, :status => 'not_found' }
     end
 
     respond_with(@meanings) do |format|

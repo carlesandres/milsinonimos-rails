@@ -1,7 +1,8 @@
 class MainController < ApplicationController
 
   def show
-    @word = Word.includes(:meanings => :synonims).find_by_entry(params[:name])
+    searchterm = params[:name]
+    @word = Word.includes(:meanings => :synonims).where('`synonims_meanings`.`entry` != ?', searchterm).find_by_entry(searchterm)
     if @word.blank?
       render 'not_found'
     end

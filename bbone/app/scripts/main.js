@@ -23,7 +23,8 @@ require.config({
         backbone: '../components/backbone-amd/backbone',
         underscore: '../components/underscore-amd/underscore',
         bootstrap: 'vendor/bootstrap',
-        router: 'routes/Router'
+        router: 'routes/Router',
+        templates: 'templates'
     }
 });
 
