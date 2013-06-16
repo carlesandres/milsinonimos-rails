@@ -1,8 +1,15 @@
 @import 'sass-bootstrap/lib/bootstrap';
 @import '../styles/custom_variables.scss';
 
+.container {
+
+}
+
 .hero-unit {
   padding: 20px;
+  margin-bottom: 10px;
+  background: $word_bg;
+  color: $link-color;
 }
 
 .form-search {
@@ -12,6 +19,13 @@
 .search-query {
   width: 400px;
 }
+
+html.js {
+  #search-button {
+    display: none;
+  }
+}
+
 
 .content_area {
   background: $content_area_bg;
@@ -43,6 +57,10 @@
           cursor: pointer;
           box-shadow: 0 0 20px black;
         }
+      }
+
+      &:last-child {
+        border-bottom: none;
       }
     }
   }

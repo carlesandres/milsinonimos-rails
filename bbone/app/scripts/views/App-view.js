@@ -6,8 +6,9 @@ define([
     'backbone',
     'templates',
     'models/Word-model',
+    'models/search-model',
     'views/Meaning-view',
-], function ($, _, Backbone, JST, word, MView) {
+], function ($, _, Backbone, JST, word, search, MView) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -51,7 +52,7 @@ define([
         logSearch: function ( searchterm ) {
             // If the fetched term is still the current search term, then log it
             if ( searchterm === encodeURIComponent( $('#searchbox').val() ) ) {
-                console.log( 'Registrando término: ' + searchterm );
+                search.id = searchterm;
             }
         },
 
