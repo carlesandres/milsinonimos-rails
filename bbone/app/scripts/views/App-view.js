@@ -25,8 +25,8 @@ define([
         },
 
         handleSynonims: function () {
-            var searchterm = encodeURIComponent( $('#searchbox').val() );
-            if ( searchterm === encodeURIComponent(word.get('entry')) ) {
+            var searchterm = $('#searchbox').val() ;
+            if ( searchterm === word.get('entry') ) {
                 if ( word.get('status') === 'not_found' ) {
                     this.showNotFound();
                 } else {
@@ -36,7 +36,7 @@ define([
         },
 
         showResults: function (searchterm) {
-            this.options.router.navigate( searchterm );
+            this.options.router.navigate( encodeURIComponent(searchterm) );
             $('#results').html('');
             word.get('meanings').each( function ( meaning ) {
                 var view = new MView( { model: meaning } );
@@ -52,7 +52,7 @@ define([
         logSearch: function ( searchterm ) {
             var search;
             // If the fetched term is still the current search term, then log it
-            if ( searchterm === encodeURIComponent( $('#searchbox').val() ) ) {
+            if ( searchterm === $('#searchbox').val() ) {
                 search = new Search( { entry: searchterm } );
             }
         },
@@ -68,10 +68,10 @@ define([
                 return;
             }
 
-            if ( word.id !== searchterm ) {
+            if ( word.id !== (searchterm) ) {
                 $('#results').html( '<img src="images/loading.gif">' );
                 if ( this.validateSearchTerm(searchterm)) {
-                    word.set( 'id', searchterm );
+                    word.set( 'id', (searchterm) );
                 } else {
                     console.log('Error in search term');
                 }

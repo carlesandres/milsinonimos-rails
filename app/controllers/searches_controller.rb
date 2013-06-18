@@ -40,9 +40,11 @@ class SearchesController < ApplicationController
   # POST /searches
   # POST /searches.json
   def create
-    word = Word.find_by_entry( params[:entry] )
+    searchterm = params[:entry]
+    word = Word.find_by_entry( searchterm )
     if word.blank?
-      render nothing
+      render :text => searchterm and return
+      #render :nothing => true and return
     end
 
     @search = Search.new( { word_id: word.id } )
