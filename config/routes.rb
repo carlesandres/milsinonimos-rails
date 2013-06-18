@@ -7,7 +7,7 @@ Newsino::Application.routes.draw do
     match ':name' => 'words#sinonimos', :defaults => { :format => 'json' }
   end
 
-  post 'search/:name' => 'main#search'
+  resources :searches
   match ':name' => 'main#show', :as => :mainsearch
 
   # The priority is based upon order of creation:

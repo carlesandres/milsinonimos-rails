@@ -12,11 +12,7 @@ define([
         },
 
         initialize: function () {
-            this.on('change:id', this.update, this);
-        },
-
-        update: function () {
-            this.fetch();
+            this.save();
         },
 
         parse: function (response) {
@@ -25,8 +21,7 @@ define([
         },
 
         urlRoot: '/searches'
-
     });
 
-    return new SearchModel();
+    return SearchModel;
 });
