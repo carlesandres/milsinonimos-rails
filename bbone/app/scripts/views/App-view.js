@@ -21,11 +21,36 @@ define([
 
         initialize: function () {
             this.model = word;
-            this.listenTo(word, 'sync', this.handleSynonims);
+            this.listenTo(word, 'sync', this.handleResults);
         },
 
-        handleSynonims: function () {
-            var searchterm = $('#searchbox').val() ;
+        prevent: function( evt ) {
+            if (evt.which === 13) { evt.preventDefault(); }
+        },
+
+        trySearch: function ( ) {
+            var searchterm = $.trim( $('#searchbox').val().toLowerCase() ) ;
+            if ( !searchterm ) {
+                $('#results').html('');
+                return;
+            }
+
+            if ( word.id !== (searchterm) ) {
+                $('#results').html( '<img src="images/loading.gif">' );
+                if ( this.validateSearchTerm(searchterm)) {
+                    word.set( 'id', (searchterm) );
+                } else {
+                    console.log('Error in search term');
+                }
+            }
+        },
+
+        validateSearchTerm: function () {
+            return true;
+        },
+
+        handleResults: function () {
+            var searchterm = $.trim( $('#searchbox').val().toLowerCase() ) ;
             if ( searchterm === word.get('entry') ) {
                 if ( word.get('status') === 'not_found' ) {
                     this.showNotFound();
@@ -57,30 +82,7 @@ define([
             }
         },
 
-        prevent: function( evt ) {
-            if (evt.which === 13) { evt.preventDefault(); }
-        },
 
-        trySearch: function ( ) {
-            var searchterm = $.trim( $('#searchbox').val() ) ;
-            if ( !searchterm ) {
-                $('#results').html('');
-                return;
-            }
-
-            if ( word.id !== (searchterm) ) {
-                $('#results').html( '<img src="images/loading.gif">' );
-                if ( this.validateSearchTerm(searchterm)) {
-                    word.set( 'id', (searchterm) );
-                } else {
-                    console.log('Error in search term');
-                }
-            }
-        },
-
-        validateSearchTerm: function () {
-            return true;
-        },
     });
 
     return AppView;
