@@ -1,17 +1,39 @@
-/*global describe, it */
+/*global require*/
 'use strict';
-(function () {
-    describe('Give it some context', function () {
-        describe('maybe a bit more context here', function () {
-            it('should run here few assertions', function () {
 
-            });
-        });
+require.config({
+    shim: {
+        underscore: {
+            exports: '_'
+        },
+        backbone: {
+            deps: [
+                'underscore',
+                'jquery'
+            ],
+            exports: 'Backbone'
+        },
+        bootstrap: {
+            deps: ['jquery'],
+            exports: 'jquery'
+        }
+    },
+    paths: {
+        jquery: '../components/jquery/jquery',
+        backbone: '../components/backbone-amd/backbone',
+        underscore: '../components/underscore-amd/underscore',
+        bootstrap: '../app/vendor/bootstrap',
+        templates: '../app/templates'
+    }
+});
+
+require([
+    'backbone', 'router', 'views/App-view'
+], function (Backbone, Router, AppView) {
+        var router = new Router();
+        router.view = new AppView( { router: router } );
     });
 
-    describe('Querying /words/palabra', function () {
-        it('should return an 200 response', function () {
 
-        });
-    });
-})();
+
+
