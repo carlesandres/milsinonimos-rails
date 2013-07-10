@@ -32,6 +32,8 @@ require([
 ], function (Backbone, Router, AppView) {
         var router = new Router();
         router.view = new AppView( { router: router } );
+        console.log( router );
+        console.log( '******************************************************' );
     });
 
 
