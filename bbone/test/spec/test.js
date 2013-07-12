@@ -19,11 +19,11 @@ require.config({
         }
     },
     paths: {
-        jquery: '../components/jquery/jquery',
-        backbone: '../components/backbone-amd/backbone',
-        underscore: '../components/underscore-amd/underscore',
-        bootstrap: '../app/vendor/bootstrap',
-        templates: '../app/templates'
+        jquery: 'components/jquery/jquery',
+        backbone: 'components/backbone-amd/backbone',
+        underscore: 'components/underscore-amd/underscore',
+        bootstrap: 'app/vendor/bootstrap',
+        templates: 'app/templates'
     }
 });
 

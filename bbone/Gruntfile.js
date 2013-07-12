@@ -94,6 +94,19 @@ module.exports = function (grunt) {
                     }
                 }
             },
+            testlivereload: {
+                options: {
+                    middleware: function (connect) {
+                        return [
+                            lrSnippet,
+                            connect.static(__dirname),
+                            proxySnippet,
+                            mountFolder(connect, '.tmp'),
+                            mountFolder(connect, 'test')
+                        ];
+                    }
+                }
+            },
             test: {
                 options: {
                     middleware: function (connect) {
@@ -312,6 +325,16 @@ module.exports = function (grunt) {
             'watch'
         ]);
     });
+
+    grunt.registerTask('testlive', [
+        'clean:server',
+        'coffee',
+        'jst',
+        'compass',
+        'connect:testlivereload',
+        'open',
+        'watch'
+    ]);
 
     grunt.registerTask('test', [
         'clean:server',
