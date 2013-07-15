@@ -18,6 +18,7 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app',
+        test: 'test',
         dist: '../public'
     };
 
@@ -42,6 +43,13 @@ module.exports = function (grunt) {
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
+                ],
+                tasks: ['livereload']
+            },
+            testlivereload: {
+                files: [
+                    '<%= yeoman.test %>/*.html',
+                    '{.tmp,<%= yeoman.test %>}/spec/{,*/}*.js',
                 ],
                 tasks: ['livereload']
             },
@@ -331,6 +339,7 @@ module.exports = function (grunt) {
         'coffee',
         'jst',
         'compass',
+        'livereload-start',
         'connect:testlivereload',
         'open',
         'watch'

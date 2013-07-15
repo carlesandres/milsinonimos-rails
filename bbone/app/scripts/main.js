@@ -29,12 +29,10 @@ require.config({
     }
 });
 
-require([ 'lib/mocha/mocha', 'lib/chai' ], function (mocha, chai) {
-    var expect = chai.expect;
-    mocha.setup('bdd');
-    //require(['
-    mocha.run();
-  });
+require([ 'backbone', 'router', 'views/App-view' ], function (Backbone, Router, AppView) {
+        var router = new Router();
+        router.view = new AppView( { router: router } );
+    });
 
 
 
