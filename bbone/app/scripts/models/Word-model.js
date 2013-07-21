@@ -19,7 +19,11 @@ define([
         },
 
         update: function () {
-            this.fetch();
+            this.fetch( { 'error': this.onServerError } );
+        },
+
+        onServerError: function ( model, response, options ) {
+            model.trigger('serverError');
         },
 
         parse: function (response) {
@@ -31,5 +35,5 @@ define([
         urlRoot: '/sinonimos'
     });
 
-    return new WordModel();
+    return WordModel;
 });

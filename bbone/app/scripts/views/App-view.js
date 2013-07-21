@@ -8,9 +8,10 @@ define([
     'models/Word-model',
     'models/search-model',
     'views/Meaning-view',
-], function ($, _, Backbone, JST, word, Search, MView) {
+], function ($, _, Backbone, JST, Word, Search, MView) {
     'use strict';
 
+    var word;
     var AppView = Backbone.View.extend({
         el: '#central',
         template: JST['app/scripts/templates/App.ejs'],
@@ -20,8 +21,13 @@ define([
         },
 
         initialize: function () {
-            this.model = word;
-            this.listenTo(word, 'sync', this.handleResults);
+            word = this.model = new Word();
+            this.listenTo( word, 'sync', this.handleResults);
+            this.listenTo( word, 'serverError', this.handleServerError);
+        },
+
+        handleServerError: function () {
+            console.log('Server error as handled by AppView' );
         },
 
         prevent: function( evt ) {
@@ -81,9 +87,6 @@ define([
                 search = new Search( { entry: searchterm } );
             }
         },
-
-
     });
-
     return AppView;
 });

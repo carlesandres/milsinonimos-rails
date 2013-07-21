@@ -50,6 +50,8 @@ module.exports = function (grunt) {
                 files: [
                     '<%= yeoman.test %>/*.html',
                     '{.tmp,<%= yeoman.test %>}/spec/{,*/}*.js',
+                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
+                    '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js'
                 ],
                 tasks: ['livereload']
             },
@@ -110,7 +112,7 @@ module.exports = function (grunt) {
                             connect.static(__dirname),
                             proxySnippet,
                             mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test')
+                            mountFolder(connect, 'test'),
                         ];
                     }
                 }

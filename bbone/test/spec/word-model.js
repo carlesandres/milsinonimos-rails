@@ -1,24 +1,30 @@
-/*global describe, it */
+/*global describe, it, after, before, define, sinon, should, be */
 'use strict';
 
-define( ['models/Word-model'] , function ( word ) {
-    return describe('Word-model', function () {
-        describe('Give it some context', function () {
-            describe('maybe a bit more context here', function () {
-                it('should run here few assertions', function () {
-                  var foo = "string";
-                  foo.should.be.a('string');
-                  //var a = new Word
+define([ 'backbone', 'models/Word-model'], function (Backbone, Wordmodel) {
 
+        describe('Word model', function( ) {
+            before( function () {
+                this.word = new Wordmodel();
+                this.updatespy = sinon.stub( this.word, 'fetch' );
+            } );
 
-                });
+            after( function () {
+                this.word.fetch.restore();
+            } );
+
+            it('should exist', function () {
+                this.word.should.exist ;
+            });
+
+            it('should have an initialize method', function () {
+                this.word.initialize.should.be.defined;
+            });
+
+            it('calls the fetch method when id changes', function () {
+                this.word.set( 'id', 'whatever' );
+                this.updatespy.should.have.been.called;
             });
         });
+  });
 
-        describe('Querying /words/palabra', function () {
-            it('should return an 200 response', function () {
-
-            });
-        });
-    });
-} );

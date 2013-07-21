@@ -1,4 +1,4 @@
-/*global require, it, describe, expect*/
+/*global require*/
 'use strict';
 
 require.config({
@@ -22,29 +22,21 @@ require.config({
         jquery: '../app/components/jquery/jquery',
         backbone: '../app/components/backbone-amd/backbone',
         underscore: '../app/components/underscore-amd/underscore',
+        src: '../app/scripts',
         bootstrap: '../app/vendor/bootstrap',
-        templates: '../app/templates',
+        templates: '../.tmp/scripts/templates',
+        routes: '../app/scripts/routes',
+        router: 'routes/Router',
         models: '../app/scripts/models',
-        collections: '../app/scripts/collections'
+        collections: '../app/scripts/collections',
+        views: '../app/scripts/views'
     }
 });
 
-require([ 'backbone', 'models/word-model' ], function (Backbone, wordmodel) {
-
-        it('Word model', function( ) {
-            describe('should exist', function () {
-                expect( wordmodel ).to.exist ;
-            });
-            describe('should have an initialize method', function () {
-                expect( wordmodel.initialize ).to.be.defined;
-            });
-            describe('it fires the custom update event when id changes', function () {
-            });
-
+require([ 'backbone', 'word-model', 'app-view', 'status-view'
+         ], function (Backbone, wmtest, aptest, stview) {
+            mocha.run();
         });
-
-        mocha.run();
-    });
 
 
 

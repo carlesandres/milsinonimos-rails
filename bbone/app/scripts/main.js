@@ -33,7 +33,3 @@ require([ 'backbone', 'router', 'views/App-view' ], function (Backbone, Router, 
         var router = new Router();
         router.view = new AppView( { router: router } );
     });
-
-
-
-
