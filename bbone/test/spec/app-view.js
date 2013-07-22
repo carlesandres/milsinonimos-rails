@@ -4,7 +4,7 @@
 define([ 'views/App-view'], function (AppView) {
         'use strict';
 
-        describe('Appview model', function( ) {
+        describe('Appview view', function( ) {
             before( function () {
                 this.appview = new AppView();
                 this.appview.router = {};

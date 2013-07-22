@@ -4,7 +4,7 @@
 define([ 'views/Status-view'], function (StatusView) {
         'use strict';
 
-        describe('Status model', function( ) {
+        describe('Status view', function( ) {
             before( function () {
                 this.statusview = new StatusView();
             } );
@@ -17,6 +17,15 @@ define([ 'views/Status-view'], function (StatusView) {
                 it('should exist', function () {
                     this.statusview.should.exist ;
                 });
+
+                it('has a render method');
+                it('has a reference to the Word model');
+                it('listens to errors on word updates from the server');
+                it('renders an error message when Word update fails');
+                it('clears the view when Word attempts to update');
+
+
+
             });
         });
     });
