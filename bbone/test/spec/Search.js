@@ -1,11 +1,11 @@
 /*global describe, it, after, before, define, sinon, should, be */
 'use strict';
 
-define([ 'backbone', 'models/Search-model'], function (Backbone, Searchmodel) {
+define([ 'backbone', 'models/Search'], function (Backbone, Search) {
 
         describe('Search model', function( ) {
             before( function () {
-                this.search = new Searchmodel();
+                this.search = new Search();
                 this.updatespy = sinon.stub( this.search, 'fetch' );
             } );
 

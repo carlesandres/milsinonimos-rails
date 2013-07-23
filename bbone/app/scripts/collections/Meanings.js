@@ -3,7 +3,7 @@
 define([
     'underscore',
     'backbone',
-    'models/Meaning-model',
+    'models/Meaning',
 ], function (_, Backbone, Meaning) {
     'use strict';
 

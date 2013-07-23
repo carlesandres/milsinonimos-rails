@@ -3,11 +3,11 @@
 define([
     'underscore',
     'backbone',
-    'collections/Meaning-collection',
-], function (_, Backbone, MeaningsCollection) {
+    'collections/Meanings',
+], function (_, Backbone, Meanings) {
     'use strict';
 
-    var WordModel = Backbone.Model.extend({
+    var Search = Backbone.Model.extend({
         defaults: {
             entry: '',
             id: '',
@@ -28,12 +28,12 @@ define([
 
         parse: function (response) {
             response.status = response.status || 'ok';
-            response.meanings = response.meanings ? new MeaningsCollection(response.meanings) : {};
+            response.meanings = response.meanings ? new Meanings(response.meanings) : {};
             return response;
         },
 
         urlRoot: '/sinonimos'
     });
 
-    return WordModel;
+    return Search;
 });

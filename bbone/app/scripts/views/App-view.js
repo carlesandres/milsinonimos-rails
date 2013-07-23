@@ -5,8 +5,8 @@ define([
     'underscore',
     'backbone',
     'templates',
-    'models/Search-model',
-    'models/SearchLog-model',
+    'models/Search',
+    'models/SearchLog',
     'views/Meaning-view',
 ], function ($, _, Backbone, JST, Search, SearchLog, MView) {
     'use strict';

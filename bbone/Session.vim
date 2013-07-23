@@ -137,7 +137,6 @@ set ttimeoutlen=100
 set undodir=~/.vim/backups
 set undofile
 set wildmenu
-set window=18
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -147,19 +146,19 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +34 app/scripts/main.js
-badd +91 app/scripts/views/App-view.js
+badd +15 app/scripts/views/App-view.js
 badd +1 test/index.html
 badd +8 test/spec/app-view.js
-badd +28 test/spec/SpecRunner.js
+badd +39 test/spec/SpecRunner.js
 badd +116 Gruntfile.js
 badd +27 test/spec/status-view.js
 badd +15 app/scripts/views/Status-view.js
 badd +1 app/scripts/collections/Meaning-collection.js
 badd +1 app/scripts/models/Meaning-model.js
-badd +1 app/scripts/models/search-model.js
-badd +1 search-model.js
+badd +28 app/scripts/models/Search.js
+badd +0 app/scripts/collections/Meanings.js
 args app/scripts/main.js
-edit search-model.js
+edit app/scripts/collections/Meanings.js
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
@@ -275,11 +274,11 @@ set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 8) / 17)
+let s:l = 7 - ((6 * winheight(0) + 8) / 17)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+7
 normal! 0
 lcd /Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino/bbone
 tabnext 1
