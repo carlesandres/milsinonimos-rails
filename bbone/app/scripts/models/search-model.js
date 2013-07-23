@@ -3,25 +3,37 @@
 define([
     'underscore',
     'backbone',
-], function (_, Backbone) {
+    'collections/Meaning-collection',
+], function (_, Backbone, MeaningsCollection) {
     'use strict';
 
-    var SearchModel = Backbone.Model.extend({
+    var WordModel = Backbone.Model.extend({
         defaults: {
-            entry: ''
+            entry: '',
+            id: '',
+            status: ''
         },
 
         initialize: function () {
-            this.save();
+            this.on('change:id', this.update, this);
+        },
+
+        update: function () {
+            this.fetch( { 'error': this.onServerError } );
+        },
+
+        onServerError: function ( model, response, options ) {
+            model.trigger('serverError');
         },
 
         parse: function (response) {
             response.status = response.status || 'ok';
+            response.meanings = response.meanings ? new MeaningsCollection(response.meanings) : {};
             return response;
         },
 
-        urlRoot: '/searches'
+        urlRoot: '/sinonimos'
     });
 
-    return SearchModel;
+    return WordModel;
 });

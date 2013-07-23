@@ -18,7 +18,12 @@ define([ 'views/Status-view'], function (StatusView) {
                     this.statusview.should.exist ;
                 });
 
-                it('has a render method');
+                it('has a render method', function () {
+
+                  this.statusview.render.should.be.defined;
+
+
+                });
                 it('has a reference to the Word model');
                 it('listens to errors on word updates from the server');
                 it('renders an error message when Word update fails');

@@ -1,28 +1,28 @@
 /*global describe, it, after, before, define, sinon, should, be */
 'use strict';
 
-define([ 'backbone', 'models/Word-model'], function (Backbone, Wordmodel) {
+define([ 'backbone', 'models/Search-model'], function (Backbone, Searchmodel) {
 
-        describe('Word model', function( ) {
+        describe('Search model', function( ) {
             before( function () {
-                this.word = new Wordmodel();
-                this.updatespy = sinon.stub( this.word, 'fetch' );
+                this.search = new Searchmodel();
+                this.updatespy = sinon.stub( this.search, 'fetch' );
             } );
 
             after( function () {
-                this.word.fetch.restore();
+                this.search.fetch.restore();
             } );
 
             it('should exist', function () {
-                this.word.should.exist ;
+                this.search.should.exist ;
             });
 
             it('should have an initialize method', function () {
-                this.word.initialize.should.be.defined;
+                this.search.initialize.should.be.defined;
             });
 
             it('calls the fetch method when id changes', function () {
-                this.word.set( 'id', 'whatever' );
+                this.search.set( 'id', 'whatever' );
                 this.updatespy.should.have.been.called;
             });
         });

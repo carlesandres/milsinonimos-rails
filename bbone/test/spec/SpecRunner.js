@@ -33,8 +33,8 @@ require.config({
     }
 });
 
-require([ 'backbone', 'word-model', 'app-view', 'status-view'
-         ], function (Backbone, wmtest, aptest, stview) {
+require([ 'backbone', 'search-model', 'app-view', 'status-view'
+         ], function (Backbone, smtest, aptest, stview) {
             mocha.run();
         });
 

@@ -5,13 +5,12 @@ define([
     'underscore',
     'backbone',
     'templates',
-    'models/Word-model',
-    'models/search-model',
+    'models/Search-model',
+    'models/SearchLog-model',
     'views/Meaning-view',
-], function ($, _, Backbone, JST, Word, Search, MView) {
+], function ($, _, Backbone, JST, Search, SearchLog, MView) {
     'use strict';
 
-    var word;
     var AppView = Backbone.View.extend({
         el: '#central',
         template: JST['app/scripts/templates/App.ejs'],
@@ -21,9 +20,9 @@ define([
         },
 
         initialize: function () {
-            word = this.model = new Word();
-            this.listenTo( word, 'sync', this.handleResults);
-            this.listenTo( word, 'serverError', this.handleServerError);
+            this.model = new Search();
+            this.listenTo( this.model, 'sync', this.handleResults);
+            this.listenTo( this.model, 'serverError', this.handleServerError);
         },
 
         handleServerError: function () {
@@ -41,10 +40,10 @@ define([
                 return;
             }
 
-            if ( word.id !== (searchterm) ) {
+            if ( this.model.id !== (searchterm) ) {
                 $('#results').html( '<img src="images/loading.gif">' );
                 if ( this.validateSearchTerm(searchterm)) {
-                    word.set( 'id', (searchterm) );
+                    this.model.set( 'id', (searchterm) );
                 } else {
                     console.log('Error in search term');
                 }
@@ -57,8 +56,8 @@ define([
 
         handleResults: function () {
             var searchterm = $.trim( $('#searchbox').val().toLowerCase() ) ;
-            if ( searchterm === word.get('entry') ) {
-                if ( word.get('status') === 'not_found' ) {
+            if ( searchterm === this.model.get('entry') ) {
+                if ( this.model.get('status') === 'not_found' ) {
                     this.showNotFound();
                 } else {
                     this.showResults(searchterm) ;
@@ -69,7 +68,7 @@ define([
         showResults: function (searchterm) {
             this.options.router.navigate( encodeURIComponent(searchterm) );
             $('#results').html('');
-            word.get('meanings').each( function ( meaning ) {
+            this.model.get('meanings').each( function ( meaning ) {
                 var view = new MView( { model: meaning } );
                 $('#results').append( view.render().el );
             } );
@@ -84,7 +83,7 @@ define([
             var search;
             // If the fetched term is still the current search term, then log it
             if ( searchterm === $('#searchbox').val() ) {
-                search = new Search( { entry: searchterm } );
+                search = new SearchLog( { entry: searchterm } );
             }
         },
     });
