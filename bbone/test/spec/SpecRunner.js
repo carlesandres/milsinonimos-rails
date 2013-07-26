@@ -33,7 +33,14 @@ require.config({
     }
 });
 
-require([ 'backbone', 'Search', 'app-view', 'status-view'
-         ], function (Backbone, smtest, aptest, stview) {
+var specs = [];
+
+specs.push( 'backbone' );
+specs.push( 'Search' );
+specs.push( 'app-view' );
+specs.push( 'status-view' );
+specs.push( 'integration' );
+
+require(specs, function () {
             mocha.run();
         });

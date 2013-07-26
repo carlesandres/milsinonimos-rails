@@ -146,18 +146,23 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +34 app/scripts/main.js
-badd +15 app/scripts/views/App-view.js
+badd +33 app/scripts/views/App-view.js
 badd +1 test/index.html
-badd +8 test/spec/app-view.js
+badd +56 test/spec/app-view.js
 badd +39 test/spec/SpecRunner.js
 badd +116 Gruntfile.js
-badd +27 test/spec/status-view.js
-badd +15 app/scripts/views/Status-view.js
-badd +28 app/scripts/models/search.js
+badd +32 test/spec/status-view.js
+badd +26 app/scripts/views/Status-view.js
+badd +16 app/scripts/models/search.js
 badd +15 app/scripts/collections/Meanings.js
 badd +1 app/scripts/models/Meaning.js
+badd +1 app/scripts/templates/Status.ejs
+badd +17 app/scripts/views/Meaning-view.js
+badd +4 app/styles/main.scss
+badd +22 test/spec/Search.js
+badd +0 test/spec/integration.js
 args app/scripts/main.js
-edit app/scripts/models/search.js
+edit test/spec/integration.js
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
@@ -274,11 +279,11 @@ set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 28 - ((27 * winheight(0) + 21) / 42)
+let s:l = 1 - ((0 * winheight(0) + 10) / 20)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-28
+1
 normal! 0
 lcd /Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino/bbone
 tabnext 1

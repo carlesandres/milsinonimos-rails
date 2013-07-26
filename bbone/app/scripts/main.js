@@ -24,7 +24,7 @@ require.config({
         underscore: '../components/underscore-amd/underscore',
         src: '../app/scripts',
         bootstrap: 'vendor/bootstrap',
-        router: 'routes/Router',
+        router: 'app/routes/Router',
         templates: 'templates'
     }
 });

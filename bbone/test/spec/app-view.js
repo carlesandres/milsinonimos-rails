@@ -20,21 +20,21 @@ define([ 'jquery', 'backbone', 'views/App-view'], function ($, Backbone, AppView
                 this.server.restore();
             } );
 
-            describe('General', function () {
-                it('should exist', function () {
+            describe('it', function () {
+                it('exists', function () {
                     this.appview.should.exist ;
                 });
             });
 
             describe('the prevent method', function () {
-                it('should have a prevent method', function () {
-                    this.appview.prevent.should.exist;
+                it('exists', function () {
+                    this.appview.prevent.should.be.a('function'); ;
                 });
             });
 
-            describe('handleResults', function () {
-                it('has a handleResults method', function () {
-                    this.appview.handleResults.should.exist ;
+            describe.skip('handleResults', function () {
+                it('exists', function () {
+                    this.appview.handleResults.should.be.a('function'); ;
                 });
 
                 it('calls the handleResults method when its model syncs', function (done) {
@@ -52,6 +52,10 @@ define([ 'jquery', 'backbone', 'views/App-view'], function ($, Backbone, AppView
                     this.server.respond();
                 });
             });
+
+            it('calls the onServerError method search fetching fails');
+            it('triggers an special log event which is listened by the searchlog model');
+            it('delegates to ResultsView its own refreshing');
 
         });
     });

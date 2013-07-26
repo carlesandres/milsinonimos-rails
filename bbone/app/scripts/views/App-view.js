@@ -8,7 +8,8 @@ define([
     'models/search',
     'models/SearchLog',
     'views/Meaning-view',
-], function ($, _, Backbone, JST, search, SearchLog, MView) {
+    'views/Status-view',
+], function ($, _, Backbone, JST, search, SearchLog, MView, SView) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -21,11 +22,8 @@ define([
 
         initialize: function () {
             this.listenTo( search, 'sync', this.handleResults);
-            this.listenTo( search, 'serverError', this.handleServerError);
-        },
-
-        handleServerError: function () {
-            console.log('Server error as handled by AppView' );
+            //this.listenTo( search, 'serverError', this.handleServerError);
+            this.status = new SView();
         },
 
         prevent: function( evt ) {

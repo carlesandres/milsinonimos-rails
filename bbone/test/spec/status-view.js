@@ -22,10 +22,10 @@ define([ 'views/Status-view'], function (StatusView) {
                   this.statusview.render.should.be.defined;
                 });
 
-                //it('has a reference to the Search model');
-                //it('listens to errors on search updates from the server');
-                //it('renders an error message when Word update fails');
-                //it('clears the view when Word attempts to update');
+                it('has a reference to the search object');
+                it('handles serverError events from search');
+                it('handles timeout events from search');
+                it('handles search fetch events clearing the view');
 
 
 
