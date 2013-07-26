@@ -6,11 +6,11 @@ define([
 ], function (_, Backbone) {
     'use strict';
 
-    var MeaningModel = Backbone.Model.extend({
+    var Meaning = Backbone.Model.extend({
         defaults: {
             synonims: ''
         },
     });
 
-    return MeaningModel;
+    return Meaning;
 });

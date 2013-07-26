@@ -5,7 +5,8 @@ define([
     'underscore',
     'backbone',
     'templates',
-], function ($, _, Backbone, JST) {
+    'models/search'
+], function ($, _, Backbone, JST, search) {
     'use strict';
 
     var StatusView = Backbone.View.extend({

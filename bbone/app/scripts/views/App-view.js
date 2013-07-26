@@ -5,10 +5,10 @@ define([
     'underscore',
     'backbone',
     'templates',
-    'models/Search',
+    'models/search',
     'models/SearchLog',
     'views/Meaning-view',
-], function ($, _, Backbone, JST, Search, SearchLog, MView) {
+], function ($, _, Backbone, JST, search, SearchLog, MView) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -20,9 +20,8 @@ define([
         },
 
         initialize: function () {
-            this.model = new Search();
-            this.listenTo( this.model, 'sync', this.handleResults);
-            this.listenTo( this.model, 'serverError', this.handleServerError);
+            this.listenTo( search, 'sync', this.handleResults);
+            this.listenTo( search, 'serverError', this.handleServerError);
         },
 
         handleServerError: function () {
@@ -40,10 +39,10 @@ define([
                 return;
             }
 
-            if ( this.model.id !== (searchterm) ) {
+            if ( search.id !== (searchterm) ) {
                 $('#results').html( '<img src="images/loading.gif">' );
                 if ( this.validateSearchTerm(searchterm)) {
-                    this.model.set( 'id', (searchterm) );
+                    search.set( 'id', (searchterm) );
                 } else {
                     console.log('Error in search term');
                 }
@@ -56,8 +55,8 @@ define([
 
         handleResults: function () {
             var searchterm = $.trim( $('#searchbox').val().toLowerCase() ) ;
-            if ( searchterm === this.model.get('entry') ) {
-                if ( this.model.get('status') === 'not_found' ) {
+            if ( searchterm === search.get('entry') ) {
+                if ( search.get('status') === 'not_found' ) {
                     this.showNotFound();
                 } else {
                     this.showResults(searchterm) ;
@@ -68,7 +67,7 @@ define([
         showResults: function (searchterm) {
             this.options.router.navigate( encodeURIComponent(searchterm) );
             $('#results').html('');
-            this.model.get('meanings').each( function ( meaning ) {
+            search.get('meanings').each( function ( meaning ) {
                 var view = new MView( { model: meaning } );
                 $('#results').append( view.render().el );
             } );

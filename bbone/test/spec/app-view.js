@@ -4,17 +4,20 @@
 define([ 'jquery', 'backbone', 'views/App-view'], function ($, Backbone, AppView) {
         'use strict';
 
-        describe('Appview view', function( ) {
+        describe('App view', function( ) {
             before( function () {
+                this.server = sinon.fakeServer.create();
+                this.spy = sinon.stub( AppView.prototype, 'handleResults' ).returns('');
                 this.appview = new AppView();
                 this.appview.router = {};
-                // this.appview.model = new Backbone.Model( { id: 'casa' });
-                // this.appview.model.url = 'sinonimos';
-                // this.appview.model.entry = 'sinonimos';
+                this.appview.model = new Backbone.Model( { id: 'casa' });
+                this.appview.model.url = 'sinonimos';
+                this.appview.model.entry = 'sinonimos';
             } );
 
             after( function () {
-                //this.word.fetch.restore();
+                AppView.prototype.handleResults.restore();
+                this.server.restore();
             } );
 
             describe('General', function () {
@@ -23,38 +26,33 @@ define([ 'jquery', 'backbone', 'views/App-view'], function ($, Backbone, AppView
                 });
             });
 
+            describe('the prevent method', function () {
+                it('should have a prevent method', function () {
+                    this.appview.prevent.should.exist;
+                });
+            });
+
             describe('handleResults', function () {
-                var xhr, server;
-                before( function () {
-                    server = sinon.fakeServer.create();
-                });
-
-                after( function () {
-                    server.restore();
-                });
-
                 it('has a handleResults method', function () {
                     this.appview.handleResults.should.exist ;
                 });
 
-                it('calls the handleResults method when its model syncs', function () {
-                    var spy = sinon.stub( this.appview, 'handleResults' ).returns('');
-                    this.appview.model.fetch();
-                    server.requests[0].respond( 
+                it('calls the handleResults method when its model syncs', function (done) {
+                    this.spy.should.have.been.called;
+                    this.appview.model.fetch( { success: function ( ) {
+                      done();
+                    }, error: function ( ) {
+                      done();
+                    } } );
+                    this.server.respondWith(
                        200,
                        { "Content-Type": "application/json" },
                        JSON.stringify( [ { id: "casa", text: "Something" } ] )
                     );
-                    console.log( server.requests );
-                    spy.should.have.been.called;
+                    this.server.respond();
                 });
             });
 
-            describe('the prevent method', function () {
-                it('should have a prevent method', function () {
-                    this.appview.prevent.should.be.defined;
-                });
-            });
         });
     });
 

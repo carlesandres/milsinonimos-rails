@@ -35,5 +35,5 @@ define([
         urlRoot: '/sinonimos'
     });
 
-    return Search;
+    return new Search();
 });

@@ -153,12 +153,11 @@ badd +39 test/spec/SpecRunner.js
 badd +116 Gruntfile.js
 badd +27 test/spec/status-view.js
 badd +15 app/scripts/views/Status-view.js
-badd +1 app/scripts/collections/Meaning-collection.js
-badd +1 app/scripts/models/Meaning-model.js
-badd +28 app/scripts/models/Search.js
-badd +0 app/scripts/collections/Meanings.js
+badd +28 app/scripts/models/search.js
+badd +15 app/scripts/collections/Meanings.js
+badd +1 app/scripts/models/Meaning.js
 args app/scripts/main.js
-edit app/scripts/collections/Meanings.js
+edit app/scripts/models/search.js
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
@@ -193,7 +192,8 @@ setlocal nocopyindent
 setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
-setlocal nocursorline
+set cursorline
+setlocal cursorline
 setlocal define=
 setlocal dictionary=
 setlocal nodiff
@@ -274,11 +274,11 @@ set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 7 - ((6 * winheight(0) + 8) / 17)
+let s:l = 28 - ((27 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-7
+28
 normal! 0
 lcd /Applications/XAMPP/xamppfiles/htdocs/bitpresso/newsino/bbone
 tabnext 1

@@ -1,6 +1,10 @@
 @import 'sass-bootstrap/lib/bootstrap';
 @import '../styles/custom_variables.scss';
 
+#status {
+  display: none;
+}
+
 .container {
 
 }
