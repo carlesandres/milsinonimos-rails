@@ -8,7 +8,7 @@
 <body>
     <div id="mocha"></div>
     <script src="lib/mocha/mocha.js"></script>
-    <script>mocha.setup('bdd')</script>
+    <script>mocha.setup('bdd').ignoreLeaks(); </script>
     <!-- assertion framework -->
     <script src="lib/chai.js"></script>
     <script src="lib/sinon-chai.js"></script>

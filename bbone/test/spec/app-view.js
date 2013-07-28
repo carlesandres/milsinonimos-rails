@@ -2,12 +2,13 @@
 'use strict';
 
 define([ 'jquery', 'backbone', 'views/App-view'], function ($, Backbone, AppView) {
+
         'use strict';
 
         describe('App view', function( ) {
             before( function () {
                 this.server = sinon.fakeServer.create();
-                this.spy = sinon.stub( AppView.prototype, 'handleResults' ).returns('');
+                sinon.stub( AppView.prototype, 'handleResults' ).returns('');
                 this.appview = new AppView();
                 this.appview.router = {};
                 this.appview.model = new Backbone.Model( { id: 'casa' });
@@ -32,13 +33,12 @@ define([ 'jquery', 'backbone', 'views/App-view'], function ($, Backbone, AppView
                 });
             });
 
-            describe.skip('handleResults', function () {
+            describe('handleResults', function () {
                 it('exists', function () {
                     this.appview.handleResults.should.be.a('function'); ;
                 });
 
                 it('calls the handleResults method when its model syncs', function (done) {
-                    this.spy.should.have.been.called;
                     this.appview.model.fetch( { success: function ( ) {
                       done();
                     }, error: function ( ) {
@@ -50,6 +50,7 @@ define([ 'jquery', 'backbone', 'views/App-view'], function ($, Backbone, AppView
                        JSON.stringify( [ { id: "casa", text: "Something" } ] )
                     );
                     this.server.respond();
+                    this.appview.handleResults.should.have.been.called;
                 });
             });
 

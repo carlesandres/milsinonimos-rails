@@ -35,7 +35,6 @@ require.config({
 
 var specs = [];
 
-specs.push( 'backbone' );
 specs.push( 'Search' );
 specs.push( 'app-view' );
 specs.push( 'status-view' );
