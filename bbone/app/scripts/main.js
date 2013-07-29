@@ -21,6 +21,7 @@ require.config({
     paths: {
         jquery: '../components/jquery/jquery',
         backbone: '../components/backbone-amd/backbone',
+        localStorage: '../components/backbone.localStorage/backbone.localStorage',
         underscore: '../components/underscore-amd/underscore',
         src: '../app/scripts',
         bootstrap: 'vendor/bootstrap',

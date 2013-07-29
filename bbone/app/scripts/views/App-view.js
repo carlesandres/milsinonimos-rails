@@ -7,9 +7,10 @@ define([
     'templates',
     'models/search',
     'models/SearchLog',
+    'collections/recentSearches',
     'views/Meaning-view',
     'views/Status-view',
-], function ($, _, Backbone, JST, search, SearchLog, MView, SView) {
+], function ($, _, Backbone, JST, search, SearchLog, recentSearches, MView, SView) {
     'use strict';
 
     var AppView = Backbone.View.extend({

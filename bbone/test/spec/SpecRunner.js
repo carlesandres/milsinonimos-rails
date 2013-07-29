@@ -29,7 +29,8 @@ require.config({
         router: 'routes/Router',
         models: '../app/scripts/models',
         collections: '../app/scripts/collections',
-        views: '../app/scripts/views'
+        views: '../app/scripts/views',
+        localStorage: '../app/components/backbone.localStorage/backbone.localStorage'
     }
 });
 
@@ -39,6 +40,8 @@ specs.push( 'Search' );
 specs.push( 'app-view' );
 specs.push( 'status-view' );
 specs.push( 'integration' );
+specs.push( 'recentSearches' );
+specs.push( 'Synonym-model' );
 
 require(specs, function () {
             mocha.run();
