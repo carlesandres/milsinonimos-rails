@@ -41,7 +41,7 @@ specs.push( 'app-view' );
 specs.push( 'status-view' );
 specs.push( 'integration' );
 specs.push( 'recentSearches' );
-specs.push( 'Synonym-model' );
+specs.push( 'Word-spec' );
 
 require(specs, function () {
             mocha.run();

@@ -3,27 +3,28 @@
 
 define([ 'collections/recentSearches'], function (recentSearches) {
 
-        describe('recentSearches collection', function( ) {
-            before( function () {
-                //sinon.stub( recentSearches, 'save' );
-            } );
+    describe('recentSearches collection', function () {
+        before( function () {
+            //sinon.stub( recentSearches, 'save' );
+        } );
 
-            after( function () {
-                //recentSearches.save.restore();
-            } );
+        after( function () {
+            //recentSearches.save.restore();
+        } );
 
-            it('exists', function () {
-                recentSearches.should.exist ;
-                console.log( recentSearches );
-            });
-
-            it('uses synonim as its model');
-
-            it('should call its view when initialized');
-
-            it.skip('uses localStorage as a persistence layer', function () {
-                //recentSearches.localStorage.is.a('function');
-            });
+        it('exists', function () {
+            recentSearches.should.exist ;
+            console.log( recentSearches );
         });
-  });
 
+        it('uses synonim as its model');
+
+        it('should call its view when initialized');
+
+        it.skip('uses localStorage as a persistence layer', function () {
+            //recentSearches.localStorage.is.a('function');
+        });
+        
+        it('adds a new element when search change:id');
+    });
+});
