@@ -12,7 +12,7 @@ define([ 'models/Word'], function (Word) {
         } );
 
         it('has en "entry" property');
-        it('validates entry');
+        it('validates the "entry" property');
 
     });
 });

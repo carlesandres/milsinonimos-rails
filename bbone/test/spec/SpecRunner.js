@@ -36,11 +36,11 @@ require.config({
 
 var specs = [];
 
-specs.push( 'Search' );
-specs.push( 'app-view' );
-specs.push( 'status-view' );
-specs.push( 'integration' );
-specs.push( 'recentSearches' );
+specs.push( 'Search-spec' );
+specs.push( 'app-view-spec' );
+specs.push( 'status-view-spec' );
+specs.push( 'integration-spec' );
+specs.push( 'recentSearches-spec' );
 specs.push( 'Word-spec' );
 
 require(specs, function () {

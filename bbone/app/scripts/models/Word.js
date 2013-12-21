@@ -9,8 +9,8 @@ define([
     var Word = Backbone.Model.extend({
         defaults: {
             entry: '',
-        },
-
+        }
+    });
 
     return Word;
 });

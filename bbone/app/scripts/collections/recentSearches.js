@@ -17,7 +17,7 @@ define([
 
         add: function() {
             var word = this.get('id');
-        };
+        }
 
     });
 
