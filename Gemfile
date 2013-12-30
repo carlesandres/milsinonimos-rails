@@ -49,8 +49,6 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'rspec-mocks'
 	gem 'rspec-expectations'
-	gem 'simple_cov'
-	gem 'ZenTest'
 	gem 'factory_girl_rails'
   gem 'populator'
 end
