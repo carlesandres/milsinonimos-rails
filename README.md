@@ -1,7 +1,6 @@
 #MilSinonimos
 ##A spanish sinonyms dictionary app
 
-**Warning!** The app code is currently broken.
+**Warning!** The current milsinonimos.com website is based on very old non-optimized code.
 
-A fix is on its way.
-
+Hopefully this version will be published soon.
